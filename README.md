@@ -53,6 +53,7 @@ The design of the website was created so that users:
 ## Credits
 ### Content
 <!-- Add Content Credits Here -->
+- W3Schools JS Content - Guidance on coding nav bar using JavaScript.
 ### Media
 <!-- Add Media Credits Here -->
 - Google Fonts - Importing of Fonts used within the project (Gowun Dodum & Boogaloo)
