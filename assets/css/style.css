@@ -22,18 +22,34 @@ h3 {
 
 /* Header Style Rules */
 header {
-
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+/* Dropdown Button Rules */
+.dropdown-btn {
+    background-color: transparent;
+    border: none;
+    color:#FFFFFF;
+    font-size: 5rem;
+    border-radius: 10%;
+    margin: 0.5rem;
+}
+.dropdown-btn:hover{
+    cursor: pointer;
+}
+.dropdown-content {
+    display: none;
 }
 /* Logo Style Rules */
 .quizzle-logo{
     display: flex;
     background: url('../images/quizzle-logo.webp');
     background-size: cover;
-    max-width: 5rem;
+    width: 5rem;
     height: 5rem;
     margin: 0.5rem;
 }
-
 /* Hides the text in the Quizzle Logo Link */
 .quizzle-logo a {
     color: transparent;
