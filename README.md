@@ -55,3 +55,5 @@ The design of the website was created so that users:
 <!-- Add Content Credits Here -->
 ### Media
 <!-- Add Media Credits Here -->
+- Google Fonts - Importing of Fonts used within the project (Gowun Dodum & Boogaloo)
+- Font Awesome - Importing of icons and script for use of icons within the project.
