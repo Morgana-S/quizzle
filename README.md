@@ -48,7 +48,16 @@ The design of the website was created so that users:
 - Licecap - Screen recording GIFs for responsiveness demonstration testing.
 
 ## Deployment
-<!-- Add Deployment Information Here -->
+### Deployment to GitHub Pages
+- The page was deployed in the early stages to GitHub pages. The steps to deploy are as follows:
+    1. In the GitHub [Repository](https://github.com/Morgana-S/quizzle), click the settings option at the top of the page.
+    2. Under 'Code and Automation' on the left side, click 'Pages'.
+    3. Under 'Build and Deployment' > 'Source', choose 'Deploy from a Branch'. The chosen branch to deploy should be 'Main'. Save these settings.
+    4. Back under the code section at the top of the page, view the deployments on the right hand side, and select the 'Github-Pages' Deployment.
+
+### Local Deployment
+- In order to make a local copy of this project, it can be cloned. In your IDE terminal, type the command below to clone this repository:
+    - ``git clone https://github.com/Morgana-S/quizzle.git``
 
 ## Credits
 ### Content
