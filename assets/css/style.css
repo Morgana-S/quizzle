@@ -26,39 +26,6 @@ header {
     align-items: center;
     justify-content: space-between
 }
-/* Dropdown Button Rules */
-.dropdown-btn {
-    background-color: transparent;
-    border: none;
-    color:#FFFFFF;
-    font-size: 4rem;
-    border-radius: 10%;
-    margin: 0.5rem;
-}
-.dropdown-btn:hover{
-    cursor: pointer;
-}
-/* Dropdown Menu Formatting */
-.dropdown-content {
-    display: none;
-    background-color: #FFFFFF;
-    position: absolute;
-    box-shadow: px solid #000000;
-    right: 0.2rem;
-    border-radius: 5px;
-}
-.dropdown-content a{
-    color:#6256CA;
-    text-decoration: none;
-    margin: 0.2rem, 0.5rem;
-    font-family: 'Boogaloo', sans-serif;
-    font-size: 2rem;
-    text-align: right;
-}
-.show-dropdown {
-    display: flex;
-    flex-direction: column;
-}
 /* Logo Style Rules */
 .quizzle-logo{
     display: flex;
@@ -72,7 +39,61 @@ header {
 .quizzle-logo a {
     color: transparent;
 }
+/* Dropdown Button Rules */
+.dropdown-btn {
+    background-color: transparent;
+    border: none;
+    color:#FFFFFF;
+    font-size: 4rem;
+    border-radius: 10%;
+    margin: 0.5rem;
+}
 
+.dropdown-btn:hover{
+    cursor: pointer;
+}
+/* Dropdown Menu Formatting */
+.dropdown-content {
+    display: none;
+    background-color: #FFFFFF;
+    position: absolute;
+    border: 2px solid #000000;
+    right: 0.2rem;
+    border-radius: 5px;
+    
+}
+
+.dropdown-content a{
+    color:#6256CA;
+    text-decoration: none;
+    margin: 0.2rem, 0.5rem;
+    padding: 0.2rem;
+    font-family: 'Boogaloo', sans-serif;
+    font-size: 2rem;
+    text-align: right;
+}
+
+.show-dropdown {
+    display: flex;
+    flex-direction: column;
+}
+
+.active-page {
+    text-decoration: underline;
+}
+/* Main Content Rules */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.main-heading {
+    margin-top: 3rem;
+}
+
+.main-heading h1 {
+    font-size: 3rem;
+}
 /* Media Query and Styles for Tablet Users */
 @media screen and (min-width: 768px) {}
 
