@@ -44,7 +44,8 @@ header {
     background-color: #FFFFFF;
     position: absolute;
     box-shadow: px solid #000000;
-    right: 0.1rem;
+    right: 0.2rem;
+    border-radius: 5px;
 }
 .dropdown-content a{
     color:#6256CA;
