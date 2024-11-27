@@ -73,17 +73,17 @@ header {
     font-family: 'Boogaloo', sans-serif;
     font-size: 2rem;
     text-align: right;
-    
+
 }
 
-.dropdown-content a:hover{
+.dropdown-content a:hover {
     background-color: #9ABF80;
     color: #000000;
     transition: background-color 0.5s ease-in-out 0s;
     border-radius: 10px;
 }
 
-.active-page {
+.active-page:any-link {
     text-decoration: underline;
 }
 
@@ -162,7 +162,7 @@ header {
     }
 
     .dropdown-content a {
-        color:#FFFFFF;
+        color: #FFFFFF;
         margin: 0 0.5rem;
     }
 }
@@ -172,6 +172,7 @@ header {
     #introduction-text {
         margin: 2rem 15rem;
     }
+
     .powerup-box {
         margin: 1rem 2rem;
     }
