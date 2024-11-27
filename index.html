@@ -35,10 +35,10 @@
         </div>
         <nav class="header-nav">
             <div class="dropdown-menu">
-                <button onclick="displayMenu()" class="dropdown-btn"><i class="fa-solid fa-bars"></i></button>
+                <button onclick="displayMenu()" class="dropdown-button"><i class="fa-solid fa-bars"></i></button>
                 <div id="dropdown-links" class="dropdown-content">
                     <a href="index.html" aria-label="Click to go to our quiz page." class="active-page">Take our Quiz!</a>
-                    <a href="feedback.html" aria-label="Click to go to our feedback page.">Give us Feedback!</a>
+                    <a href="feedback.html" aria-label="Click to go to our contact us and feedback page.">Contact Us</a>
                 </div>
             </div>
         </nav>
@@ -48,6 +48,24 @@
         <div class="main-heading">
             <h1>Quizzle!</h1>
         </div>
+        <div id="introduction-text">
+            <p class="introduction-content">Quizzle is a simple quiz game featuring 10 questions from a variety of subjects.</p>
+            <p class="introduction-content">You will have 20 seconds to answer each question.</p>
+            <p class="introduction-content">You can also use the following power-ups to help you:</p>
+
+            <div class="powerup-wrapper">
+                <div class="powerup-box">
+                    <i class="fa-solid fa-snowflake"></i>
+                    <p class="powerup-label">Freeze Timer - This pauses the timer on the question you're currently on.</p>
+                </div>
+                <div class="powerup-box">
+                    <i class="fa-solid fa-scale-balanced"></i>
+                    <p class="powerup-label">50/50 - This removes two wrong answers from the question, making it a fifty fifty guess.</p>
+                </div>
+            </div>
+            <p class="introduction-content">Click below to begin the quiz - best of luck!</p>
+        </div>
+        <div id="start-button"></div>
     </main>
     <!-- Script Area -->
     <script src="assets/js/index.js"></script>
