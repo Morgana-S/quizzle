@@ -5,12 +5,42 @@
     box-sizing: border-box;
 }
 
-/* Media Query and Styles for Tablet Users */
-@media screen and (min-width: 768px){
-    
+/* General Style Rules */
+body {
+    background-color: #6256CA;
+    color: #FFFFFF;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
+
+h1,
+h2,
+h3 {
+    font-family: 'Boogaloo', sans-serif;
+}
+
+/* Header Style Rules */
+header {
+
+}
+/* Logo Style Rules */
+.quizzle-logo{
+    display: flex;
+    background: url('../images/quizzle-logo.webp');
+    background-size: cover;
+    max-width: 5rem;
+    height: 5rem;
+    margin: 0.5rem;
+}
+
+/* Hides the text in the Quizzle Logo Link */
+.quizzle-logo a {
+    color: transparent;
+}
+
+/* Media Query and Styles for Tablet Users */
+@media screen and (min-width: 768px) {}
 
 /* Media Query and Styles for Laptop/Desktop Users */
-@media screen and (min-width: 1024px){
-
-}
+@media screen and (min-width: 1024px) {}
