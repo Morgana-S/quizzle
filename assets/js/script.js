@@ -1,6 +1,42 @@
-// When clicked, toggles display of the dropdown navigation menu
+// Toggles display of the dropdown navigation menu
 function displayMenu() {
     document.getElementById('dropdown-links').classList.toggle('show-dropdown');
+}
+
+/**
+ * Removes the introductory text and creates the basic quiz structure in the DOM.
+ */
+function showQuiz() {
+    // Removes the introduction text and start button
+    let introduction = document.getElementById('introduction');
+    let startButton = document.getElementById('start-quiz');
+    introduction.remove();
+    startButton.remove();
+    // Creates a semantic section called 'quiz-text-section' and adds it to the document
+    let createQuizSection = document.createElement('section');
+    createQuizSection.id = 'quiz-text-section'
+    document.body.appendChild(createQuizSection);
+    // Creates a div with class 'flex-container' and appends it as a child to the quiz-text-section
+    let quizSection = document.getElementById('quiz-text-section');
+    let createFlex = document.createElement('div');
+    createFlex.className = 'flex-container'
+    createFlex.id = 'quiz-container'
+    quizSection.appendChild(createFlex);
+    // Creates a text container for the quiz question and appends it to the flex-container above
+    let quizContainer = document.getElementById('quiz-container');
+    let createQuizTextBox = document.createElement('div');
+    createQuizTextBox.className = 'text-container';
+    createQuizTextBox.innerHTML = `<p class="article-content">${questionsArray[0].text}</p>`
+    quizContainer.appendChild(createQuizTextBox);
+    // Creates four buttons to display the answers to the question above
+    for (let i = 1; i <= 4; i++) {
+        let createQuizButton = document.createElement('button');
+        createQuizButton.className = 'quiz-button'
+        // Displays the quiz answer text as html inside the button
+        createQuizButton.innerHTML = `${Object.values(questionsArray[0])[i][0]}`;
+        quizContainer.appendChild(createQuizButton);
+    }
+
 }
 
 // List of Questions and Answers
