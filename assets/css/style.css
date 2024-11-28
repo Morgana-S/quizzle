@@ -101,7 +101,7 @@ header {
     font-size: 3rem;
 }
 
-#introduction-text {
+.article-container {
     display: flex;
     flex-direction: column;
     background-color: #FFFFFF;
@@ -111,7 +111,7 @@ header {
     margin: 3rem;
 }
 
-.introduction-content {
+.article-content {
     color: #000000;
     font-family: 'Gowun-Dodum', sans-serif;
     font-weight: bold;
@@ -146,6 +146,24 @@ header {
 
 .powerup-label {
     margin-top: 0;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 3rem 5rem;
+}
+.quiz-button {
+    flex: 1 0 45%;
+    min-height: 8rem;
+    min-width: auto;
+    border: 3px solid #000000;
+    border-radius: 25px;
+    font-family: 'Gowun-Dodum', sans-serif;
+    font-weight: bold;
+    font-size: larger;
+
 }
 
 /* Media Query and Styles for Tablet Users */
