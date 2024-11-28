@@ -1,3 +1,5 @@
+addEventListener("DOMContentLoaded", questionRandomizer);
+
 // Toggles display of the dropdown navigation menu
 function displayMenu() {
     document.getElementById('dropdown-links').classList.toggle('show-dropdown');
@@ -26,17 +28,30 @@ function showQuiz() {
     let quizContainer = document.getElementById('quiz-container');
     let createQuizTextBox = document.createElement('div');
     createQuizTextBox.className = 'text-container';
-    createQuizTextBox.innerHTML = `<p class="article-content">${questionsArray[0].text}</p>`
+    createQuizTextBox.innerHTML = `<p class="article-content">${questionsArray[randomQuestionNumbers[0]].text}</p>`
     quizContainer.appendChild(createQuizTextBox);
     // Creates four buttons to display the answers to the question above
     for (let i = 1; i <= 4; i++) {
         let createQuizButton = document.createElement('button');
         createQuizButton.className = 'quiz-button'
         // Displays the quiz answer text as html inside the button
-        createQuizButton.innerHTML = `${Object.values(questionsArray[0])[i][0]}`;
+        createQuizButton.innerHTML = `${Object.values(questionsArray[randomQuestionNumbers[0]])[i][0]}`;
         quizContainer.appendChild(createQuizButton);
     }
 
+}
+let randomQuestionNumbers = [];
+
+/**
+ * Generates an array of random numbers to call as question indices
+ */
+function questionRandomizer() {
+    while (randomQuestionNumbers.length < 10) {
+        let randomNumber = Math.floor(Math.random() * 20) + 1;
+        if (!randomQuestionNumbers.includes(randomNumber)) {
+            randomQuestionNumbers.push(randomNumber);
+        }
+    }
 }
 
 // List of Questions and Answers
