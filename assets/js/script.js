@@ -1,4 +1,5 @@
-addEventListener("DOMContentLoaded", questionRandomizer);
+// Ensures the DOM content is loaded before using the random question order below
+addEventListener("DOMContentLoaded", questionRandomizer)
 
 // Toggles display of the dropdown navigation menu
 function displayMenu() {
