@@ -15,16 +15,22 @@ function showQuiz() {
     let startButton = document.getElementById('start-quiz');
     introduction.remove();
     startButton.remove();
-    // Creates a semantic section called 'quiz-text-section' and adds it to the document
-    let createQuizSection = document.createElement('section');
-    createQuizSection.id = 'quiz-text-section'
-    document.body.appendChild(createQuizSection);
-    // Creates a div with class 'flex-container' and appends it as a child to the quiz-text-section
-    let quizSection = document.getElementById('quiz-text-section');
-    let createFlex = document.createElement('div');
-    createFlex.className = 'flex-container'
-    createFlex.id = 'quiz-container'
-    quizSection.appendChild(createFlex);
+    // Creates semantic sections for the quiz-text and quiz-tools sections and adds it to the document
+    for (let i = 0; i <= 1; i++) {
+        let createQuizSection = document.createElement('section')
+        document.body.appendChild(createQuizSection);
+    }
+    let quizSection = document.getElementsByTagName('section');
+    quizSection[0].id = 'quiz-text-section';
+    quizSection[1].id = 'quiz-tools';
+    // Creates a div with class 'flex-container' and appends it as a child to the quiz sections
+    for (let i = 0;  i <= 1; i++) {
+        let createFlex = document.createElement('div');
+        createFlex.className = 'flex-container'
+        quizSection[i].appendChild(createFlex);
+    }
+    quizSection[0].firstChild.id = 'quiz-container'
+    quizSection[1].firstChild.id = 'quiz-tools'
     // Creates a text container for the quiz question and appends it to the flex-container above
     let quizContainer = document.getElementById('quiz-container');
     let createQuizTextBox = document.createElement('div');
@@ -39,8 +45,23 @@ function showQuiz() {
         createQuizButton.innerHTML = `${Object.values(questionsArray[randomQuestionNumbers[0]])[i][0]}`;
         quizContainer.appendChild(createQuizButton);
     }
-
+    // Creates the boxes for the power-ups
+    let quizTools = document.getElementById('quiz-tools');
+    for (let i = 0; i <= 1; i++) {
+        let createPowerUpButton = document.createElement('button');
+        createPowerUpButton.className = 'powerup-button';
+        quizTools.firstChild.appendChild(createPowerUpButton);  
+    }
+    let powerUpButton = document.getElementsByClassName('powerup-button');
+    powerUpButton[0].innerHTML = '<i class="fa-solid fa-snowflake"></i>';
+    powerUpButton[0].setAttribute('onclick', 'freezeTimer()');
+    powerUpButton[1].innerHTML = '<i class="fa-solid fa-scale-balanced"></i>';
+    powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers()');
+    // Creates the box for the timer
+    
 }
+
+
 let randomQuestionNumbers = [];
 
 /**
