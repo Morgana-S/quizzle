@@ -4,7 +4,7 @@ function displayMenu() {
 }
 
 // List of Questions and Answers
-let questions = [
+let questionsArray = [
     {
         text: 'What is the capital city of Argentina?',
         answer1: ['Buenos Aires', true],
@@ -74,5 +74,75 @@ let questions = [
         answer2: ['Ohio River', false],
         answer3: ['Missouri River', false],
         answer4: ['Colorado River', true]
+    },
+    {
+        text: 'Who wrote the novel "1984"?',
+        answer1: ['Aldous Huxley', false],
+        answer2: ['George Orwell', true],
+        answer3: ['Ray Bradbury', false],
+        answer4: ['J.R.R Tolkien', false]
+    },
+    {
+        text: 'Who was the first President of the United States of America?',
+        answer1: ['George Washington', true],
+        answer2: ['Thomas Jefferson', false],
+        answer3: ['Abraham Lincoln', false],
+        answer4: ['John Adams', false],
+    },
+    {
+        text: 'Which artist is famous for the painting "The Starry Night"?',
+        answer1: ['Pablo Picasso', false],
+        answer2: ['Claude Monet', false],
+        answer3: ['Vincent Van Gogh', true],
+        answer4: ['Salvadore Dali', false],
+    },
+    {
+        text: 'In which sport would you use a shuttlecock?',
+        answer1: ['Tennis', false],
+        answer2: ['Badminton', true],
+        answer3: ['Volleyball', false],
+        answer4: ['Table Tennis', false]
+    },
+    {
+        text: 'Which movie featured a character named "Jack Dawson"',
+        answer1: ['The Titanic', true],
+        answer2: ['The Great Gatsby', false],
+        answer3: ['Inception', false],
+        answer4: ['Avatar', false],
+    },
+    {
+        text: 'What does "HTTP" stand for in website addresses?',
+        answer1: ['Hyper Transfer Text Protocol', false],
+        answer2: ['Hypertext Transfer Protocol', true],
+        answer3: ['Hyper Tool for Text Processing', false],
+        answer4: ['Hyper Technology Transfer Process', false],
+    },
+    {
+        text: 'Which band is famous for the album "Abbey Road"?',
+        answer1: ['The Rolling Stones', false],
+        answer2: ['Queen', false],
+        answer3: ['The Beatles', true],
+        answer4: ['Pink Floyd', false],
+    },
+    {
+        text: 'Which animal is known as the "King of the Jungle"?',
+        answer1: ['Tiger', false],
+        answer2: ['Elephant', false],
+        answer3: ['Gorilla', false],
+        answer4: ['Lion', true],
+    },
+    {
+        text: 'Which company developed the first iPhone?',
+        answer1: ['Microsoft', false],
+        answer2: ['Apple', true],
+        answer3: ['Samsung', false],
+        answer4: ['Google', false],
+    },
+    {
+        text: 'What year did World War II end?',
+        answer1: ['1940', false],
+        answer2: ['1943', false],
+        answer3: ['1945', true],
+        answer4: ['1950', false],
     }
 ]
