@@ -147,16 +147,13 @@ header {
     text-align: center;
 }
 
-.powerup-label {
-    margin-top: 0;
-}
-
 .flex-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     margin: 3rem 5rem;
 }
+
 .quiz-button {
     flex: 1 0 45%;
     min-height: 8rem;
@@ -170,6 +167,31 @@ header {
 }
 
 .quiz-button:hover {
+    background-color: #9ABF80;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.powerup-button {
+    flex: 1 0 45%;
+    min-height: 8rem;
+    max-width: 10rem;
+    border: 3px solid #000000;
+    border-radius: 25px;
+    font-family: 'Gowun-Dodum', sans-serif;
+    font-weight: bold;
+    font-size: larger;
+    margin: 0 2rem 0.5rem;
+}
+
+.powerup-button i {
+    color: #6256CA;
+    place-content: center;
+    font-size: 4rem;
+    margin: 0 0 1rem;
+}
+
+.powerup-button:hover {
     background-color: #9ABF80;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
