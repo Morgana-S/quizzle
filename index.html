@@ -48,24 +48,29 @@
         <div class="main-heading">
             <h1>Quizzle!</h1>
         </div>
-        <div id="introduction-text">
-            <p class="introduction-content">Quizzle is a simple quiz game featuring 10 questions from a variety of subjects.</p>
-            <p class="introduction-content">You will have 10 seconds to answer each question.</p>
-            <p class="introduction-content">You can also use the following power-ups to help you:</p>
-
-            <div class="powerup-wrapper">
-                <div class="powerup-box">
-                    <i class="fa-solid fa-snowflake"></i>
-                    <p class="powerup-label">Freeze Timer - This pauses the timer on the question you're currently on.</p>
+        <section id="introduction">
+            <div id="introduction-text" class="article-container">
+                <p class="article-content">Quizzle is a simple quiz game featuring 10 questions from a variety of subjects.</p>
+                <p class="article-content">You will have 10 seconds to answer each question.</p>
+                <p class="article-content">You can also use the following power-ups to help you:</p>
+                <div class="powerup-wrapper">
+                    <div class="powerup-box">
+                        <i class="fa-solid fa-snowflake"></i>
+                        <p class="powerup-label">Freeze Timer - This pauses the timer on the question you're currently on.</p>
+                    </div>
+                    <div class="powerup-box">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                        <p class="powerup-label">50/50 - This removes two wrong answers from the question, making it a fifty fifty guess.</p>
+                    </div>
                 </div>
-                <div class="powerup-box">
-                    <i class="fa-solid fa-scale-balanced"></i>
-                    <p class="powerup-label">50/50 - This removes two wrong answers from the question, making it a fifty fifty guess.</p>
-                </div>
+                <p class="article-content">Click below to begin the quiz - best of luck!</p>
             </div>
-            <p class="introduction-content">Click below to begin the quiz - best of luck!</p>
-        </div>
-
+        </section>
+        <section id="start-quiz">
+            <div class="flex-container">
+                <button class="quiz-button">Start Game</button>
+            </div>
+        </section>
     </main>
     <!-- Script Area -->
     <script src="assets/js/script.js"></script>
