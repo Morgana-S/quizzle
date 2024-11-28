@@ -101,14 +101,17 @@ header {
     font-size: 3rem;
 }
 
-.article-container {
+.text-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    flex: 1 0 90%;
     background-color: #FFFFFF;
     border: 3px solid #000000;
     border-radius: 3rem;
     text-align: center;
-    margin: 3rem;
+    min-height: 8rem;
+    margin: 3rem 3rem 2rem;
 }
 
 .article-content {
@@ -163,7 +166,13 @@ header {
     font-family: 'Gowun-Dodum', sans-serif;
     font-weight: bold;
     font-size: larger;
+    margin: 0 2rem 0.5rem;
+}
 
+.quiz-button:hover {
+    background-color: #9ABF80;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
 }
 
 /* Media Query and Styles for Tablet Users */
@@ -186,9 +195,6 @@ header {
 
 /* Media Query and Styles for Laptop/Desktop Users */
 @media screen and (min-width: 1024px) {
-    #introduction-text {
-        margin: 2rem 15rem;
-    }
 
     .powerup-box {
         margin: 1rem 2rem;
@@ -196,5 +202,9 @@ header {
 
     .powerup-label {
         max-width: 200px;
+    }
+
+    .flex-container{
+        margin: 2rem 15rem;
     }
 }
