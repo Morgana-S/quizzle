@@ -1,8 +1,11 @@
 // Ensures the DOM content is loaded before using the random question order below
-addEventListener("DOMContentLoaded", questionRandomizer)
 addEventListener("DOMContentLoaded", function() {
+    questionRandomizer();
     let startQuizButton = document.getElementById('start-quiz-button');
     startQuizButton.setAttribute('onclick', 'showQuiz()');
+    currentQuestionNumber = 0
+    currentQuestion = randomQuestions[currentQuestionNumber]
+    let score = 0;
 })
 // Toggles display of the dropdown navigation menu
 function displayMenu() {
@@ -38,16 +41,18 @@ function showQuiz() {
     let quizContainer = document.getElementById('quiz-container');
     let createQuizTextBox = document.createElement('div');
     createQuizTextBox.className = 'text-container';
-    createQuizTextBox.innerHTML = `<p class="article-content">${questionsArray[randomQuestionNumbers[0]].text}</p>`
+    createQuizTextBox.innerHTML = `<p class="article-content">${currentQuestion.text}</p>`
     quizContainer.appendChild(createQuizTextBox);
     // Creates four buttons to display the answers to the question above
     for (let i = 1; i <= 4; i++) {
         let createQuizButton = document.createElement('button');
         createQuizButton.className = 'quiz-button';
         // Displays the quiz answer text as html inside the button
-        createQuizButton.innerHTML = `${Object.values(questionsArray[randomQuestionNumbers[0]])[i][0]}`;
-        // Sets the onclick function of each button to run the checkAnswer function
-        createQuizButton.setAttribute('onclick', 'checkAnswer()');
+        createQuizButton.innerHTML = `${Object.values(currentQuestion)[i][0]}`;
+        // Sets the attribute of "correct" for each box for checkAnswer function
+        createQuizButton.setAttribute('correct', `${Object.values(currentQuestion)[i][1]}`)
+        // Sets the onclick function of each button to run the showNextQuestion function
+        createQuizButton.setAttribute('onclick', 'showNextQuestion()');
         quizContainer.appendChild(createQuizButton);
     }
     // Creates the boxes for the power-ups
@@ -79,13 +84,11 @@ function startTimer() {
     timer = setInterval(function() {
         secondsLeft--;
         updateTimeLeft();
-        console.log(secondsLeft);
         if (secondsLeft === 0) {
             stopTimer();
-            console.log("time's up!");
         }
     }, 1000)
-}
+};
 
 function updateTimeLeft() {
     let timer = document.getElementsByClassName('timer');
@@ -98,16 +101,40 @@ function stopTimer() {
     clearInterval(timer);
 }
 
-let randomQuestionNumbers = [];
+let randomQuestions = [];
+
+function showNextQuestion() {
+    if (currentQuestionNumber < 10) {
+        currentQuestionNumber++
+        updateQuestion()
+        console.log(currentQuestionNumber);
+    } else {
+        console.log('all questions answered!')
+    }
+}
+
+function updateQuestion() {
+    currentQuestion = randomQuestions[currentQuestionNumber]
+    let quizTextBox = document.getElementsByClassName('text-container');
+    quizTextBox[0].innerHTML = 
+    `<p class="article-content">${currentQuestion.text}</p>`
+    let answerBox = document.getElementsByClassName('quiz-button');
+    for (let i = 0; i < 4; i++) {
+        answerBox[i].innerHTML =
+            `${Object.values(currentQuestion)[i + 1][0]}`;
+        answerBox[i].setAttribute('correct', `${Object.values(currentQuestion)[i + 1][1]}`)
+    }
+}
 
 /**
  * Generates an array of random numbers to call as question indices
  */
 function questionRandomizer() {
-    while (randomQuestionNumbers.length < 10) {
+    while (randomQuestions.length < 10) {
         let randomNumber = Math.floor(Math.random() * 20) + 1;
-        if (!randomQuestionNumbers.includes(randomNumber)) {
-            randomQuestionNumbers.push(randomNumber);
+        let randomNumbersArray = [];
+        if (!randomNumbersArray.includes(randomNumber)) {
+            randomQuestions.push(questionsArray[randomNumber]);
         }
     }
 }
@@ -213,7 +240,7 @@ let questionsArray = [
         answer4: ['Table Tennis', false]
     },
     {
-        text: 'Which movie featured a character named "Jack Dawson"',
+        text: 'Which movie featured a character named "Jack Dawson"?',
         answer1: ['The Titanic', true],
         answer2: ['The Great Gatsby', false],
         answer3: ['Inception', false],
