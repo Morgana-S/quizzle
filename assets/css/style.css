@@ -175,7 +175,6 @@ header {
 .powerup-button {
     flex: 1 0 45%;
     min-height: 8rem;
-    max-width: 10rem;
     border: 3px solid #000000;
     border-radius: 25px;
     font-family: 'Gowun-Dodum', sans-serif;
@@ -195,6 +194,30 @@ header {
     background-color: #9ABF80;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
+}
+
+.timer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex: 0.5 0 75%;
+    min-height: 8rem;
+    background-color: #FFFFFF;
+    color: #000000;
+    border: 3px solid #000000;
+    border-radius: 25px;
+    font-family: 'Gowun-Dodum', sans-serif;
+    font-weight: bold;
+    font-size: larger;
+    margin: 0 2rem 0.5rem;
+}
+
+.timer span {
+    font-family: 'Gowun-Dodum', sans-serif;
+    font-weight: bold;
+    font-size: 3rem;
+    text-align: center;
+    padding: 0 1rem;
 }
 
 /* Media Query and Styles for Tablet Users */
