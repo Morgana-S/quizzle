@@ -41,14 +41,16 @@ function showQuiz() {
     let quizContainer = document.getElementById('quiz-container');
     let createQuizTextBox = document.createElement('div');
     createQuizTextBox.className = 'text-container';
-    createQuizTextBox.innerHTML = `<p class="article-content">${currentQuestion.text}</p>`
+    createQuizTextBox.innerHTML = 
+    `<p class= "question-number">Question ${currentQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`
     quizContainer.appendChild(createQuizTextBox);
     // Creates four buttons to display the answers to the question above
     for (let i = 1; i <= 4; i++) {
         let createQuizButton = document.createElement('button');
         createQuizButton.className = 'quiz-button';
         // Displays the quiz answer text as html inside the button
-        createQuizButton.innerHTML = `${Object.values(currentQuestion)[i][0]}`;
+        createQuizButton.innerHTML = 
+        `<p>${Object.values(currentQuestion)[i][0]}</p>`;
         // Sets the attribute of "correct" for each box for checkAnswer function
         createQuizButton.setAttribute('correct', `${Object.values(currentQuestion)[i][1]}`)
         // Sets the onclick function of each button to run the showNextQuestion function
@@ -77,15 +79,17 @@ function showQuiz() {
     startTimer();
 }
 
-let secondsLeft = 5;
+let secondsLeft = 10;
 let timer;
 
 function startTimer() {
+    secondsLeft = 10;
     timer = setInterval(function() {
         secondsLeft--;
         updateTimeLeft();
         if (secondsLeft === 0) {
             stopTimer();
+            showNextQuestion();
         }
     }, 1000)
 };
@@ -101,9 +105,8 @@ function stopTimer() {
     clearInterval(timer);
 }
 
-let randomQuestions = [];
-
 function showNextQuestion() {
+    let secondsLeft = 10;
     if (currentQuestionNumber < 10) {
         currentQuestionNumber++
         updateQuestion()
@@ -113,12 +116,13 @@ function showNextQuestion() {
     }
 }
 
+let answerBox = document.getElementsByClassName('quiz-button');
+
 function updateQuestion() {
     currentQuestion = randomQuestions[currentQuestionNumber]
     let quizTextBox = document.getElementsByClassName('text-container');
     quizTextBox[0].innerHTML = 
-    `<p class="article-content">${currentQuestion.text}</p>`
-    let answerBox = document.getElementsByClassName('quiz-button');
+    `<p class= "question-number">Question ${currentQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`
     for (let i = 0; i < 4; i++) {
         answerBox[i].innerHTML =
             `${Object.values(currentQuestion)[i + 1][0]}`;
@@ -126,20 +130,25 @@ function updateQuestion() {
     }
 }
 
+
+
+let randomQuestions = [];
+let randomNumbersArray = [];
+
 /**
  * Generates an array of random numbers to call as question indices
  */
 function questionRandomizer() {
-    while (randomQuestions.length < 10) {
-        let randomNumber = Math.floor(Math.random() * 20) + 1;
-        let randomNumbersArray = [];
+    while (randomNumbersArray.length <= 10) {
+        let randomNumber = Math.floor(Math.random() * 20);
         if (!randomNumbersArray.includes(randomNumber)) {
+            randomNumbersArray.push(randomNumber);
             randomQuestions.push(questionsArray[randomNumber]);
         }
     }
+    console.log(randomQuestions);
 }
-
-// List of Questions and Answers
+// List of Questions and Answerss
 let questionsArray = [
     {
         text: 'What is the capital city of Argentina?',
