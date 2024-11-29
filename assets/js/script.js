@@ -1,6 +1,9 @@
 // Ensures the DOM content is loaded before using the random question order below
 addEventListener("DOMContentLoaded", questionRandomizer)
-
+addEventListener("DOMContentLoaded", function() {
+    let startQuizButton = document.getElementById('start-quiz-button');
+    startQuizButton.setAttribute('onclick', 'showQuiz()');
+})
 // Toggles display of the dropdown navigation menu
 function displayMenu() {
     document.getElementById('dropdown-links').classList.toggle('show-dropdown');
@@ -40,9 +43,11 @@ function showQuiz() {
     // Creates four buttons to display the answers to the question above
     for (let i = 1; i <= 4; i++) {
         let createQuizButton = document.createElement('button');
-        createQuizButton.className = 'quiz-button'
+        createQuizButton.className = 'quiz-button';
         // Displays the quiz answer text as html inside the button
         createQuizButton.innerHTML = `${Object.values(questionsArray[randomQuestionNumbers[0]])[i][0]}`;
+        // Sets the onclick function of each button to run the checkAnswer function
+        createQuizButton.setAttribute('onclick', 'checkAnswer()');
         quizContainer.appendChild(createQuizButton);
     }
     // Creates the boxes for the power-ups
@@ -54,13 +59,44 @@ function showQuiz() {
     }
     let powerUpButton = document.getElementsByClassName('powerup-button');
     powerUpButton[0].innerHTML = '<i class="fa-solid fa-snowflake"></i>';
-    powerUpButton[0].setAttribute('onclick', 'freezeTimer()');
+    powerUpButton[0].setAttribute('onclick', 'stopTimer()');
     powerUpButton[1].innerHTML = '<i class="fa-solid fa-scale-balanced"></i>';
     powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers()');
     // Creates the box for the timer
-    
+    let createTimer = document.createElement('div')
+    createTimer.className = 'timer';
+    createTimer.innerHTML = 
+    `<span>${secondsLeft}</span>
+    <span>seconds`
+    quizTools.firstChild.appendChild(createTimer);
+    startTimer();
 }
 
+let secondsLeft = 5;
+let timer;
+
+function startTimer() {
+    timer = setInterval(function() {
+        secondsLeft--;
+        updateTimeLeft();
+        console.log(secondsLeft);
+        if (secondsLeft === 0) {
+            stopTimer();
+            console.log("time's up!");
+        }
+    }, 1000)
+}
+
+function updateTimeLeft() {
+    let timer = document.getElementsByClassName('timer');
+    timer[0].innerHTML = 
+    `<span>${secondsLeft}</span>
+    <span>seconds`
+}
+
+function stopTimer() {
+    clearInterval(timer);
+}
 
 let randomQuestionNumbers = [];
 
