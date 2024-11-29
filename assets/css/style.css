@@ -151,19 +151,23 @@ header {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 3rem 5rem;
+    margin: 0.5rem 4rem;
 }
 
 .quiz-button {
     flex: 1 0 45%;
     min-height: 8rem;
-    min-width: auto;
+    width: 5rem;
     border: 3px solid #000000;
     border-radius: 25px;
     font-family: 'Gowun-Dodum', sans-serif;
     font-weight: bold;
     font-size: larger;
-    margin: 0 2rem 0.5rem;
+    margin: 0 0 0.5rem;
+}
+
+.quiz-button p {
+    padding: 0 1rem;
 }
 
 .quiz-button:hover {
@@ -173,14 +177,16 @@ header {
 }
 
 .powerup-button {
-    flex: 1 0 45%;
+    flex: 1 1 20%;
     min-height: 8rem;
+    min-width: 5rem;
+    max-width: 10rem;
     border: 3px solid #000000;
     border-radius: 25px;
     font-family: 'Gowun-Dodum', sans-serif;
     font-weight: bold;
     font-size: larger;
-    margin: 0 2rem 0.5rem;
+    margin: 0 0.5rem;
 }
 
 .powerup-button i {
@@ -200,8 +206,9 @@ header {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    flex: 0.5 0 75%;
+    flex: 1 0 75%;
     min-height: 8rem;
+    max-width: 15rem;
     background-color: #FFFFFF;
     color: #000000;
     border: 3px solid #000000;
@@ -209,7 +216,7 @@ header {
     font-family: 'Gowun-Dodum', sans-serif;
     font-weight: bold;
     font-size: larger;
-    margin: 0 2rem 0.5rem;
+    margin: 0.2rem;
 }
 
 .timer span {
@@ -236,6 +243,10 @@ header {
         color: #FFFFFF;
         margin: 0 0.5rem;
     }
+
+    .timer {
+        min-width: 24rem;
+    }
 }
 
 /* Media Query and Styles for Laptop/Desktop Users */
@@ -251,5 +262,9 @@ header {
 
     .flex-container{
         margin: 2rem 15rem;
+    }
+
+    .timer {
+        min-width: 30em;
     }
 }
