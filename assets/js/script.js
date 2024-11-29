@@ -4,6 +4,7 @@ addEventListener("DOMContentLoaded", function() {
     let startQuizButton = document.getElementById('start-quiz-button');
     startQuizButton.setAttribute('onclick', 'showQuiz()');
     currentQuestionNumber = 0
+    displayQuestionNumber = 1
     currentQuestion = randomQuestions[currentQuestionNumber]
     let score = 0;
 })
@@ -42,7 +43,7 @@ function showQuiz() {
     let createQuizTextBox = document.createElement('div');
     createQuizTextBox.className = 'text-container';
     createQuizTextBox.innerHTML = 
-    `<p class= "question-number">Question ${currentQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`
+    `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`
     quizContainer.appendChild(createQuizTextBox);
     // Creates four buttons to display the answers to the question above
     for (let i = 1; i <= 4; i++) {
@@ -107,8 +108,9 @@ function stopTimer() {
 
 function showNextQuestion() {
     let secondsLeft = 10;
-    if (currentQuestionNumber < 10) {
+    if (currentQuestionNumber < 9) {
         currentQuestionNumber++
+        displayQuestionNumber++
         updateQuestion()
         console.log(currentQuestionNumber);
     } else {
@@ -122,7 +124,7 @@ function updateQuestion() {
     currentQuestion = randomQuestions[currentQuestionNumber]
     let quizTextBox = document.getElementsByClassName('text-container');
     quizTextBox[0].innerHTML = 
-    `<p class= "question-number">Question ${currentQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`
+    `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`
     for (let i = 0; i < 4; i++) {
         answerBox[i].innerHTML =
             `${Object.values(currentQuestion)[i + 1][0]}`;
@@ -139,7 +141,7 @@ let randomNumbersArray = [];
  * Generates an array of random numbers to call as question indices
  */
 function questionRandomizer() {
-    while (randomNumbersArray.length <= 10) {
+    while (randomNumbersArray.length < 10) {
         let randomNumber = Math.floor(Math.random() * 20);
         if (!randomNumbersArray.includes(randomNumber)) {
             randomNumbersArray.push(randomNumber);
