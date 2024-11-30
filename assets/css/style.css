@@ -210,6 +210,17 @@ header {
     transition: background-color 0.2s ease-in-out;
 }
 
+.hidden{
+    background-color: transparent;
+    color: transparent;
+    border: none
+}
+
+.hidden:hover {
+    background-color: transparent;
+    cursor: auto;
+}
+
 .timer {
     display: flex;
     flex-direction: column;
