@@ -6,7 +6,7 @@ addEventListener("DOMContentLoaded", function() {
     currentQuestionNumber = 0
     displayQuestionNumber = 1
     currentQuestion = randomQuestions[currentQuestionNumber]
-    let score = 0;
+    score = 0;
 })
 // Toggles display of the dropdown navigation menu
 function displayMenu() {
@@ -55,7 +55,7 @@ function showQuiz() {
         // Sets the attribute of "correct" for each box for checkAnswer function
         createQuizButton.setAttribute('correct', `${Object.values(currentQuestion)[i][1]}`)
         // Sets the onclick function of each button to run the showNextQuestion function
-        createQuizButton.setAttribute('onclick', 'showNextQuestion()');
+        createQuizButton.setAttribute('onclick', 'checkAnswer(this);showNextQuestion()');
         quizContainer.appendChild(createQuizButton);
     }
     // Creates the boxes for the power-ups
@@ -106,14 +106,50 @@ function stopTimer() {
     clearInterval(timer);
 }
 
+let removedAnswers = 0;
+
+function removeTwoAnswers() {
+    let randomNumber = Math.floor(Math.random() * 4)
+        let chosenBox = answerBox[randomNumber]
+        let correct = chosenBox.getAttribute('correct');
+        if (correct === 'false') {
+            chosenBox.classList.add('hidden');
+            chosenBox.setAttribute('onclick', '');
+            console.log(removedAnswers);
+            removedAnswers++
+        }
+        console.log(removedAnswers)
+}
+
+function showAllAnswers() {
+    let hiddenBoxes = document.getElementsByClassName('hidden')
+    removedAnswers = 0;
+    let i = 0;
+    while (hiddenBoxes.length > 0) {
+        hiddenBoxes[i].classList.remove('hidden');
+        hiddenBoxes[i].setAttribute('onclick', 'checkAnswer(this);showNextQuestion()' )
+    }
+}
+
+function checkAnswer(answerClicked) {
+    if (answerClicked.getAttribute('correct') === 'true') {
+        score++;
+    }
+}
+
+
 function showNextQuestion() {
     let secondsLeft = 10;
     if (currentQuestionNumber < 9) {
         currentQuestionNumber++
         displayQuestionNumber++
         updateQuestion()
+        showAllAnswers();
+        stopTimer();
+        startTimer();
         console.log(currentQuestionNumber);
     } else {
+        stopTimer();
         console.log('all questions answered!')
     }
 }
