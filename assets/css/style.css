@@ -64,6 +64,23 @@ header {
     margin: 3rem 3rem 2rem;
 }
 
+.text-container label {
+    color: #000000;
+    font-family: 'Gowun-Dodum', sans-serif;
+    font-weight: bold;
+    margin: 1rem;
+}
+
+.text-container input {
+    align-self: center;
+    max-width: 10rem;
+    min-height: 2rem;
+    border: 3px solid #000000;
+    font-family: 'Gowun-Dodum', sans-serif;
+    font-size: x-large;
+    text-align: center;
+}
+
 .article-content {
     color: #000000;
     font-family: 'Gowun-Dodum', sans-serif;

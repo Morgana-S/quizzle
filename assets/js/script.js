@@ -7,6 +7,7 @@ addEventListener("DOMContentLoaded", function() {
     displayQuestionNumber = 1
     currentQuestion = randomQuestions[currentQuestionNumber]
     score = 0;
+    let username;
 })
 // Toggles display of the dropdown navigation menu
 function displayMenu() {
@@ -17,6 +18,7 @@ function displayMenu() {
  * Removes the introductory text and creates the basic quiz structure in the DOM.
  */
 function showQuiz() {
+    username = document.getElementById('username')
     // Removes the introduction text and start button
     let introduction = document.getElementById('introduction');
     let startButton = document.getElementById('start-quiz');
@@ -185,13 +187,13 @@ function showResults() {
     createScoreMessage.id = 'personalised-message'
     if (score < 6) {
         createScoreMessage.innerHTML = 
-        `Good try PERSON, but you can do better! Why not give it another go?`;
+        `Good try ${username.value}, but you can do better! Why not give it another go?`;
     } else if(score < 10) {
         createScoreMessage.innerHTML = 
-        `You did really well, PERSON! Just a few more points for a perfect score!`;
+        `You did really well, ${username.value}! Just a few more points for a perfect score!`;
     } else {
         createScoreMessage.innerHTML = 
-        `Wow, a perfect score! Excellent work, PERSON! Be sure to compare this with your friends!`;
+        `Wow, a perfect score! Excellent work, ${username.value}! Be sure to compare this with your friends!`;
     }
     document.getElementById('results-text').appendChild(createScoreMessage);
 }
