@@ -246,6 +246,14 @@ header {
     padding: 0 1rem;
 }
 
+.score-number {
+    color: #000000;
+    font-family: 'Gowun-Dodum', sans-serif;
+    font-weight: bold;
+    margin: 1rem;
+    font-size: xx-large;
+}
+
 /* Media Query and Styles for Tablet Users */
 @media screen and (min-width: 768px) {
     .dropdown-button {
