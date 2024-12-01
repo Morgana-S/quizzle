@@ -9,6 +9,11 @@ addEventListener("DOMContentLoaded", function() {
     score = 0;
     let username;
 })
+// Warns user before navigating away from site
+window.onbeforeunload = function() {
+    return true;
+}
+
 // Toggles display of the dropdown navigation menu
 function displayMenu() {
     document.getElementById('dropdown-links').classList.toggle('show-dropdown');
