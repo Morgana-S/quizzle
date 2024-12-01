@@ -157,10 +157,10 @@ function removeTwoAnswers(powerupButton) {
 
 function showAllAnswers() {
     let hiddenBoxes = document.getElementsByClassName('hidden')
-    removedAnswers = 0;
-    while (hiddenBoxes.length > 0) {
+    while (removedAnswers > 0) {
+        hiddenBoxes[0].setAttribute('onclick', 'checkAnswer(this);showNextQuestion()');
         hiddenBoxes[0].classList.remove('hidden');
-        hiddenBoxes[0].setAttribute('onclick', 'checkAnswer(this);showNextQuestion()' )
+        removedAnswers--;
     }
 }
 
@@ -172,7 +172,7 @@ function checkAnswer(answerClicked) {
 
 
 function showNextQuestion() {
-    let secondsLeft = 11;
+    secondsLeft = 11;
     if (currentQuestionNumber < 9) {
         currentQuestionNumber++
         displayQuestionNumber++
