@@ -301,7 +301,7 @@ let questionsArray = [
         text: 'Nike is the greek goddess of:',
         answer1: ['Victory', true],
         answer2: ['Love', false],
-        answer3: ['War', false],
+        answer3: ['The Underworld', false],
         answer4: ['Wine', false],
     },
     {
