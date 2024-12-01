@@ -14,9 +14,7 @@ body {
     flex-direction: column;
 }
 
-h1,
-h2,
-h3 {
+h1 {
     font-family: 'Boogaloo', sans-serif;
 }
 
@@ -232,21 +230,6 @@ header {
 
 /* Media Query and Styles for Tablet Users */
 @media screen and (min-width: 768px) {
-    .dropdown-button {
-        display: none;
-    }
-
-    .dropdown-content {
-        display: flex;
-        background-color: transparent;
-        border: none;
-    }
-
-    .dropdown-content a {
-        color: #FFFFFF;
-        margin: 0 0.5rem;
-    }
-
     .timer {
         min-width: 24rem;
     }
@@ -254,7 +237,6 @@ header {
 
 /* Media Query and Styles for Laptop/Desktop Users */
 @media screen and (min-width: 1024px) {
-
     .powerup-box {
         margin: 1rem 2rem;
     }
