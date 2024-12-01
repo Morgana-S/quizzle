@@ -19,67 +19,77 @@ function displayMenu() {
  */
 function showQuiz() {
     username = document.getElementById('username')
-    // Removes the introduction text and start button
-    let introduction = document.getElementById('introduction');
-    let startButton = document.getElementById('start-quiz');
-    introduction.remove();
-    startButton.remove();
-    // Creates semantic sections for the quiz-text and quiz-tools sections and adds it to the document
-    for (let i = 0; i <= 1; i++) {
-        let createQuizSection = document.createElement('section')
-        document.body.appendChild(createQuizSection);
+    if (!username.value && !document.getElementById('username-error')) {
+        let createErrorMessage = document.createElement('p')
+        createErrorMessage.id = 'username-error'
+        createErrorMessage.className = 'error-message'
+        createErrorMessage.innerHTML = 'Please enter a name before clicking start quiz.'
+        document.getElementById('username').after(createErrorMessage);
+    } else if (!username.value && document.getElementById('username-error')) {
+        document.getElementById('username').focus();
+    } else {
+        // Removes the introduction text and start button
+        let introduction = document.getElementById('introduction');
+        let startButton = document.getElementById('start-quiz');
+        introduction.remove();
+        startButton.remove();
+        // Creates semantic sections for the quiz-text and quiz-tools sections and adds it to the document
+        for (let i = 0; i <= 1; i++) {
+            let createQuizSection = document.createElement('section')
+            document.body.appendChild(createQuizSection);
+        }
+        let quizSection = document.getElementsByTagName('section');
+        quizSection[0].id = 'quiz-text-section';
+        quizSection[1].id = 'quiz-tools';
+        // Creates a div with class 'flex-container' and appends it as a child to the quiz sections
+        for (let i = 0;  i <= 1; i++) {
+            let createFlex = document.createElement('div');
+            createFlex.className = 'flex-container'
+            quizSection[i].appendChild(createFlex);
+        }
+        quizSection[0].firstChild.id = 'quiz-container'
+        quizSection[1].firstChild.id = 'quiz-tools'
+        // Creates a text container for the quiz question and appends it to the flex-container above
+        let quizContainer = document.getElementById('quiz-container');
+        let createQuizTextBox = document.createElement('div');
+        createQuizTextBox.className = 'text-container';
+        createQuizTextBox.innerHTML = 
+        `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`
+        quizContainer.appendChild(createQuizTextBox);
+        // Creates four buttons to display the answers to the question above
+        for (let i = 1; i <= 4; i++) {
+            let createQuizButton = document.createElement('button');
+            createQuizButton.className = 'quiz-button';
+            // Displays the quiz answer text as html inside the button
+            createQuizButton.innerHTML = 
+            `<p>${Object.values(currentQuestion)[i][0]}</p>`;
+            // Sets the attribute of "correct" for each box for checkAnswer function
+            createQuizButton.setAttribute('correct', `${Object.values(currentQuestion)[i][1]}`)
+            // Sets the onclick function of each button to run the showNextQuestion function
+            createQuizButton.setAttribute('onclick', 'checkAnswer(this);showNextQuestion()');
+            quizContainer.appendChild(createQuizButton);
+        }
+        // Creates the boxes for the power-ups
+        let quizTools = document.getElementById('quiz-tools');
+        for (let i = 0; i <= 1; i++) {
+            let createPowerUpButton = document.createElement('button');
+            createPowerUpButton.className = 'powerup-button';
+            quizTools.firstChild.appendChild(createPowerUpButton);  
+        }
+        let powerUpButton = document.getElementsByClassName('powerup-button');
+        powerUpButton[0].innerHTML = '<i class="fa-solid fa-snowflake"></i>';
+        powerUpButton[0].setAttribute('onclick', 'stopTimer()');
+        powerUpButton[1].innerHTML = '<i class="fa-solid fa-scale-balanced"></i>';
+        powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers()');
+        // Creates the box for the timer
+        let createTimer = document.createElement('div')
+        createTimer.className = 'timer';
+        createTimer.innerHTML = 
+        `<span>${secondsLeft}</span>
+        <span>seconds`
+        quizTools.firstChild.appendChild(createTimer);
+        startTimer();
     }
-    let quizSection = document.getElementsByTagName('section');
-    quizSection[0].id = 'quiz-text-section';
-    quizSection[1].id = 'quiz-tools';
-    // Creates a div with class 'flex-container' and appends it as a child to the quiz sections
-    for (let i = 0;  i <= 1; i++) {
-        let createFlex = document.createElement('div');
-        createFlex.className = 'flex-container'
-        quizSection[i].appendChild(createFlex);
-    }
-    quizSection[0].firstChild.id = 'quiz-container'
-    quizSection[1].firstChild.id = 'quiz-tools'
-    // Creates a text container for the quiz question and appends it to the flex-container above
-    let quizContainer = document.getElementById('quiz-container');
-    let createQuizTextBox = document.createElement('div');
-    createQuizTextBox.className = 'text-container';
-    createQuizTextBox.innerHTML = 
-    `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`
-    quizContainer.appendChild(createQuizTextBox);
-    // Creates four buttons to display the answers to the question above
-    for (let i = 1; i <= 4; i++) {
-        let createQuizButton = document.createElement('button');
-        createQuizButton.className = 'quiz-button';
-        // Displays the quiz answer text as html inside the button
-        createQuizButton.innerHTML = 
-        `<p>${Object.values(currentQuestion)[i][0]}</p>`;
-        // Sets the attribute of "correct" for each box for checkAnswer function
-        createQuizButton.setAttribute('correct', `${Object.values(currentQuestion)[i][1]}`)
-        // Sets the onclick function of each button to run the showNextQuestion function
-        createQuizButton.setAttribute('onclick', 'checkAnswer(this);showNextQuestion()');
-        quizContainer.appendChild(createQuizButton);
-    }
-    // Creates the boxes for the power-ups
-    let quizTools = document.getElementById('quiz-tools');
-    for (let i = 0; i <= 1; i++) {
-        let createPowerUpButton = document.createElement('button');
-        createPowerUpButton.className = 'powerup-button';
-        quizTools.firstChild.appendChild(createPowerUpButton);  
-    }
-    let powerUpButton = document.getElementsByClassName('powerup-button');
-    powerUpButton[0].innerHTML = '<i class="fa-solid fa-snowflake"></i>';
-    powerUpButton[0].setAttribute('onclick', 'stopTimer()');
-    powerUpButton[1].innerHTML = '<i class="fa-solid fa-scale-balanced"></i>';
-    powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers()');
-    // Creates the box for the timer
-    let createTimer = document.createElement('div')
-    createTimer.className = 'timer';
-    createTimer.innerHTML = 
-    `<span>${secondsLeft}</span>
-    <span>seconds`
-    quizTools.firstChild.appendChild(createTimer);
-    startTimer();
 }
 
 let secondsLeft = 10;
