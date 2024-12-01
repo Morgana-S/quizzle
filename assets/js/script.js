@@ -80,7 +80,7 @@ function showQuiz() {
         powerUpButton[0].innerHTML = '<i class="fa-solid fa-snowflake"></i>';
         powerUpButton[0].setAttribute('onclick', 'stopTimer()');
         powerUpButton[1].innerHTML = '<i class="fa-solid fa-scale-balanced"></i>';
-        powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers()');
+        powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers(this)');
         // Creates the box for the timer
         let createTimer = document.createElement('div')
         createTimer.className = 'timer';
@@ -120,7 +120,8 @@ function stopTimer() {
 
 let removedAnswers = 0;
 
-function removeTwoAnswers() {
+function removeTwoAnswers(powerupButton) {
+    powerupButton.remove();
     let removeOrderArray = [];
     while (removeOrderArray.length < 4) {
         let randomNumber = (Math.floor(Math.random() * 4));
