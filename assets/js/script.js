@@ -14,11 +14,6 @@ window.onbeforeunload = function() {
     return true;
 }
 
-// Toggles display of the dropdown navigation menu
-function displayMenu() {
-    document.getElementById('dropdown-links').classList.toggle('show-dropdown');
-}
-
 /**
  * Removes the introductory text and creates the basic quiz structure in the DOM.
  */
@@ -100,6 +95,9 @@ function showQuiz() {
 let secondsLeft = 10;
 let timer;
 
+/**
+ * Starts the timer
+ */
 function startTimer() {
     secondsLeft = 11;
     timer = setInterval(function() {
@@ -112,6 +110,9 @@ function startTimer() {
     }, 1000)
 };
 
+/**
+ * Updates the amount of time left in the timer
+ */
 function updateTimeLeft() {
     let timer = document.getElementsByClassName('timer');
     timer[0].innerHTML = 
@@ -119,17 +120,25 @@ function updateTimeLeft() {
     <span>seconds`
 }
 
+/**
+ * Stops the timer
+ */
 function stopTimer() {
     clearInterval(timer);
 }
 
+/**
+ * Stops the timer when the button is pressed
+ */
 function freezeTimer(powerUpButton) {
     powerUpButton.remove();
     stopTimer();
 }
 
 let removedAnswers = 0;
-
+/**
+ * Removes two incorrect answers from the available options 
+ */
 function removeTwoAnswers(powerupButton) {
     powerupButton.remove();
     let removeOrderArray = [];
@@ -154,7 +163,9 @@ function removeTwoAnswers(powerupButton) {
         }
     }
 }
-
+/**
+ * Brings back the removed answer boxes for when the 50/50 powerup is used
+ */
 function showAllAnswers() {
     let hiddenBoxes = document.getElementsByClassName('hidden')
     while (removedAnswers > 0) {
@@ -164,13 +175,18 @@ function showAllAnswers() {
     }
 }
 
+/**
+ * Checks if the clicked answer is correct and increments the score if it is
+ */
 function checkAnswer(answerClicked) {
     if (answerClicked.getAttribute('correct') === 'true') {
         score++;
     }
 }
 
-
+/**
+ * Function to show the next question, restarts the timer, and brings the answer boxes back if 50/50 powerup used
+ */
 function showNextQuestion() {
     secondsLeft = 11;
     if (currentQuestionNumber < 9) {
@@ -187,7 +203,9 @@ function showNextQuestion() {
 }
 
 let answerBox = document.getElementsByClassName('quiz-button');
-
+/**
+ * Changes the question displayed in the quiz
+ */
 function updateQuestion() {
     currentQuestion = randomQuestions[currentQuestionNumber]
     let quizTextBox = document.getElementsByClassName('text-container');
@@ -199,7 +217,9 @@ function updateQuestion() {
         answerBox[i].setAttribute('correct', `${Object.values(currentQuestion)[i + 1][1]}`)
     }
 }
-
+/**
+ * Creates the results text box and displays the score
+ */
 function showResults() {
     let section = document.getElementsByTagName('section');
     for (i = 0; i < 2; i++) {
