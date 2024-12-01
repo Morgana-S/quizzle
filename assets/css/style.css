@@ -24,7 +24,7 @@ h3 {
 header {
     display: flex;
     align-items: center;
-    justify-content: space-between
+    justify-content: center;
 }
 
 /* Logo Style Rules */
@@ -39,56 +39,6 @@ header {
 /* Hides the text in the Quizzle Logo Link */
 .quizzle-logo a {
     color: transparent;
-}
-
-/* Dropdown Button Rules */
-.dropdown-button {
-    background-color: transparent;
-    border: none;
-    color: #FFFFFF;
-    font-size: 4rem;
-    border-radius: 10%;
-    margin: 0.5rem;
-}
-
-.dropdown-button:hover {
-    cursor: pointer;
-}
-
-/* Dropdown Menu Formatting */
-.dropdown-content {
-    display: none;
-    background-color: #FFFFFF;
-    position: absolute;
-    border: 2px solid #000000;
-    right: 0.2rem;
-    border-radius: 5px;
-}
-
-.dropdown-content a {
-    color: #6256CA;
-    text-decoration: none;
-    margin: 0.2rem, 0.5rem;
-    padding: 0.2rem;
-    font-family: 'Boogaloo', sans-serif;
-    font-size: 2rem;
-    text-align: right;
-}
-
-.dropdown-content a:hover {
-    background-color: #9ABF80;
-    color: #000000;
-    transition: background-color 0.5s ease-in-out 0s;
-    border-radius: 10px;
-}
-
-.active-page:any-link {
-    text-decoration: underline;
-}
-
-.show-dropdown {
-    display: flex;
-    flex-direction: column;
 }
 
 /* Main Content Rules */
