@@ -96,7 +96,7 @@ let secondsLeft = 10;
 let timer;
 
 function startTimer() {
-    secondsLeft = 10;
+    secondsLeft = 11;
     timer = setInterval(function() {
         secondsLeft--;
         updateTimeLeft();
@@ -121,23 +121,35 @@ function stopTimer() {
 let removedAnswers = 0;
 
 function removeTwoAnswers() {
-    let randomNumber = Math.floor(Math.random() * 4)
-        let chosenBox = answerBox[randomNumber]
+    let removeOrderArray = [];
+    while (removeOrderArray.length < 4) {
+        let randomNumber = (Math.floor(Math.random() * 4));
+        if (!removeOrderArray.includes(randomNumber)) {
+            removeOrderArray.push(randomNumber);
+        }
+    }
+    console.log(removeOrderArray);
+    let i = 0;
+    while (removedAnswers < 2) {
+        let chosenBox = answerBox[removeOrderArray[i]]
         let correct = chosenBox.getAttribute('correct');
         if (correct === 'false') {
             chosenBox.classList.add('hidden');
             chosenBox.setAttribute('onclick', '');
             removedAnswers++
+            i++;
+        } else if (correct === 'true') {
+            i++;
         }
+    }
 }
 
 function showAllAnswers() {
     let hiddenBoxes = document.getElementsByClassName('hidden')
     removedAnswers = 0;
-    let i = 0;
     while (hiddenBoxes.length > 0) {
-        hiddenBoxes[i].classList.remove('hidden');
-        hiddenBoxes[i].setAttribute('onclick', 'checkAnswer(this);showNextQuestion()' )
+        hiddenBoxes[0].classList.remove('hidden');
+        hiddenBoxes[0].setAttribute('onclick', 'checkAnswer(this);showNextQuestion()' )
     }
 }
 
@@ -149,7 +161,7 @@ function checkAnswer(answerClicked) {
 
 
 function showNextQuestion() {
-    let secondsLeft = 10;
+    let secondsLeft = 11;
     if (currentQuestionNumber < 9) {
         currentQuestionNumber++
         displayQuestionNumber++
