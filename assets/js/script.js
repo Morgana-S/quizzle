@@ -78,7 +78,7 @@ function showQuiz() {
         }
         let powerUpButton = document.getElementsByClassName('powerup-button');
         powerUpButton[0].innerHTML = '<i class="fa-solid fa-snowflake"></i>';
-        powerUpButton[0].setAttribute('onclick', 'stopTimer()');
+        powerUpButton[0].setAttribute('onclick', 'freezeTimer(this)');
         powerUpButton[1].innerHTML = '<i class="fa-solid fa-scale-balanced"></i>';
         powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers(this)');
         // Creates the box for the timer
@@ -116,6 +116,11 @@ function updateTimeLeft() {
 
 function stopTimer() {
     clearInterval(timer);
+}
+
+function freezeTimer(powerUpButton) {
+    powerUpButton.remove();
+    stopTimer();
 }
 
 let removedAnswers = 0;
