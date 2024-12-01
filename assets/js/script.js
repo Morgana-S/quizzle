@@ -115,10 +115,8 @@ function removeTwoAnswers() {
         if (correct === 'false') {
             chosenBox.classList.add('hidden');
             chosenBox.setAttribute('onclick', '');
-            console.log(removedAnswers);
             removedAnswers++
         }
-        console.log(removedAnswers)
 }
 
 function showAllAnswers() {
@@ -147,10 +145,9 @@ function showNextQuestion() {
         showAllAnswers();
         stopTimer();
         startTimer();
-        console.log(currentQuestionNumber);
     } else {
         stopTimer();
-        console.log('all questions answered!')
+        showResults();
     }
 }
 
@@ -168,7 +165,36 @@ function updateQuestion() {
     }
 }
 
-
+function showResults() {
+    let section = document.getElementsByTagName('section');
+    for (i = 0; i < 2; i++) {
+        section[0].remove();
+    }
+    let createNewSection = document.createElement('section');
+    createNewSection.id = 'quiz-results';
+    document.body.appendChild(createNewSection);
+    let createResultsTextBox = document.createElement('div');
+    createResultsTextBox.className = 'text-container';
+    createResultsTextBox.id = 'results-text'
+    createResultsTextBox.innerHTML =
+    `<p class="article-content"> Your score was:</p>
+    <p class="score-number">${score}</p>`
+    document.getElementById('quiz-results').appendChild(createResultsTextBox)
+    let createScoreMessage = document.createElement('p');
+    createScoreMessage.className = 'article-content'
+    createScoreMessage.id = 'personalised-message'
+    if (score < 6) {
+        createScoreMessage.innerHTML = 
+        `Good try PERSON, but you can do better! Why not give it another go?`;
+    } else if(score < 10) {
+        createScoreMessage.innerHTML = 
+        `You did really well, PERSON! Just a few more points for a perfect score!`;
+    } else {
+        createScoreMessage.innerHTML = 
+        `Wow, a perfect score! Excellent work, PERSON! Be sure to compare this with your friends!`;
+    }
+    document.getElementById('results-text').appendChild(createScoreMessage);
+}
 
 let randomQuestions = [];
 let randomNumbersArray = [];
@@ -184,7 +210,6 @@ function questionRandomizer() {
             randomQuestions.push(questionsArray[randomNumber]);
         }
     }
-    console.log(randomQuestions);
 }
 // List of Questions and Answerss
 let questionsArray = [
