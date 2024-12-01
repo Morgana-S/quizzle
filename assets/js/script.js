@@ -9,6 +9,7 @@ addEventListener("DOMContentLoaded", function() {
     score = 0;
     let username;
 })
+
 // Warns user before navigating away from site
 window.onbeforeunload = function() {
     return true;
@@ -136,6 +137,7 @@ function freezeTimer(powerUpButton) {
 }
 
 let removedAnswers = 0;
+
 /**
  * Removes two incorrect answers from the available options 
  */
@@ -163,6 +165,7 @@ function removeTwoAnswers(powerupButton) {
         }
     }
 }
+
 /**
  * Brings back the removed answer boxes for when the 50/50 powerup is used
  */
@@ -203,6 +206,7 @@ function showNextQuestion() {
 }
 
 let answerBox = document.getElementsByClassName('quiz-button');
+
 /**
  * Changes the question displayed in the quiz
  */
@@ -217,6 +221,7 @@ function updateQuestion() {
         answerBox[i].setAttribute('correct', `${Object.values(currentQuestion)[i + 1][1]}`)
     }
 }
+
 /**
  * Creates the results text box and displays the score
  */
@@ -266,6 +271,7 @@ function questionRandomizer() {
         }
     }
 }
+
 // List of Questions and Answerss
 let questionsArray = [
     {
