@@ -220,13 +220,13 @@ function showResults() {
     createScoreMessage.id = 'personalised-message'
     if (score < 6) {
         createScoreMessage.innerHTML = 
-        `Good try ${username.value}, but you can do better! Why not give it another go?`;
+        `Good try ${username.value}, but you can do better! Why not give it another go? Click the logo at the top of the page to try again.`;
     } else if(score < 10) {
         createScoreMessage.innerHTML = 
-        `You did really well, ${username.value}! Just a few more points for a perfect score!`;
+        `You did really well, ${username.value}! Just a few more points for a perfect score! Click the logo at the top of the page to try again.`;
     } else {
         createScoreMessage.innerHTML = 
-        `Wow, a perfect score! Excellent work, ${username.value}! Be sure to compare this with your friends!`;
+        `Wow, a perfect score! Excellent work, ${username.value}! Be sure to compare this with your friends! If you want to try some new questions, Click the logo at the top of the page to try again.`;
     }
     document.getElementById('results-text').appendChild(createScoreMessage);
 }
