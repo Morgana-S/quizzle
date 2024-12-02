@@ -1,9 +1,9 @@
 # Quizzle - Test your knowledge with our quiz!
-
+![Responsive Design Showcase](/documentation/feature-images/responsive-design-showcase.png)
 ## About
 Quizzle is a simple quiz application which features interactivity through use of the JavaScript programming language. The purpose of the website is to challenge users to take part in a multiple-choice quiz where they can select an answer and then find out their score at the end of the quiz.
 
-<!-- Add in Deployment Information Here -->
+The deployed version of the site can be accessed on GitHub Pages [here.](https://morgana-s.github.io/quizzle/)
 
 ## UX Design
 The design of the website was created so that users:
@@ -30,22 +30,31 @@ The design of the website was created so that users:
 - As a frequent visitor, I would like to be able to provide feedback on the quiz.
 
 ## Features
-<!-- Add Feature Information Here -->
+### Logo Header / Restart Quiz
+### Page Navigation Warning
+### Quiz Personalization
+### Randomized Questions
+### Powerups
+### Tooltips
 
 ## Testing & Bugs
-<!-- Add Testing & Bugs Information Here -->
+- For Testing and Bugs, please view the [TESTING.md](/TESTING.md) file.
+
+## Validation & Accessibilty
+- For inforamtion on code validation and accessibilty, please see the [TESTING.md](/TESTING.md) file.
 
 ## Tools
-- HTML - Page Structure and Content
-- CSS - Page appearance and styling rules.
-- CSS Flexbox - Used to add responsiveness to pages.
-- JavaScript - Page interactivity.
-- Visual Studio Code - IDE used for project development.
-- Git - Version control.
-- Github Desktop - Additional version control.
-- Github - Project repo hosting.
-- Github Pages - Project deployment.
-- Licecap - Screen recording GIFs for responsiveness demonstration testing.
+- [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - Page Structure and Content
+- [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) - Page appearance and styling rules.
+- [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) - Used to add responsiveness to pages.
+- [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) - Used to arrange tooltips for powerups.
+- [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - Page interactivity and functionality.
+- [Visual Studio Code Desktop](https://code.visualstudio.com/) - IDE used for project development.
+- [Git](https://git-scm.com/) - Version control.
+- [GitHub Desktop](https://desktop.github.com/download/) - Additional version control.
+- [Github](https://github.com/) - Project repo hosting.
+- [GitHub Pages](https://pages.github.com/) - Project deployment.
+- [Licecap](https://www.cockos.com/licecap/) - Screen recording GIFs for features demonstration.
 
 ## Deployment
 ### Deployment to GitHub Pages
@@ -61,9 +70,7 @@ The design of the website was created so that users:
 
 ## Credits
 ### Content
-<!-- Add Content Credits Here -->
-- W3Schools JS Content - Guidance on coding nav bar using JavaScript.
+- [Coding2GO](https://www.youtube.com/watch?v=UQKWc2r_41U) - Guidance on creating a tooltip using CSS.
 ### Media
-<!-- Add Media Credits Here -->
-- Google Fonts - Importing of Fonts used within the project (Gowun Dodum & Boogaloo)
-- Font Awesome - Importing of icons and script for use of icons within the project.
+- [Google Fonts](https://fonts.google.com/) - Fonts used within the project (Gowun Dodum & Boogaloo)
+- [Font Awesome](https://fontawesome.com/icons) - Icons and script for use of icons within the project.
