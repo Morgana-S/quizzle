@@ -26,12 +26,10 @@ header {
 }
 
 /* Logo Style Rules */
-.quizzle-logo {
-    display: flex;
-    background: url('../images/quizzle-logo.webp') no-repeat center center / cover;
-    width: 5rem;
-    height: 5rem;
-    margin: 0.5rem;
+.quizzle-logo img {
+    width: 7rem;
+    height: 7rem;
+    margin: 0.2rem 0 0;
 }
 
 /* Hides the text in the Quizzle Logo Link */
@@ -41,7 +39,6 @@ header {
 
 /* Main Content Rules */
 .main-heading {
-    margin-top: 3rem;
     text-align: center;
 }
 
@@ -59,7 +56,7 @@ header {
     border-radius: 3rem;
     text-align: center;
     min-height: 8rem;
-    margin: 3rem 3rem 2rem;
+    margin: 0.5rem 3rem 2rem;
 }
 
 .text-container label {
@@ -160,6 +157,8 @@ header {
 
 .powerup-button {
     flex: 1 0 49%;
+    display: grid;
+    place-items: center;
     min-height: 8rem;
     min-width: 5rem;
     max-width: 10rem;
@@ -177,6 +176,14 @@ header {
     font-size: 4rem;
     margin: 0 0 1rem;
 }
+
+.powerup-label-quiz {
+    color: #000000;
+    font-family: 'Gowun-Dodum', sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
 
 .powerup-button:hover {
     background-color: #9ABF80;
@@ -252,4 +259,47 @@ header {
     .timer {
         min-width: 30em;
     }
+
+    .powerup-label-quiz {
+        display: none;
+    }
+    
+
+    .powerup-button::before {
+        position: absolute;
+        transform: translateY(-50px) rotate(25deg);
+        opacity: 0;
+        content:attr(data-powerup);
+        background-color: #000000e8;
+        color: #ffffff;
+        padding: 0.5rem 1rem;
+        border-radius: 25px;
+        font-family: 'Gowun-Dodum', sans-serif;
+        font-size: small;
+        transition: 0.2s ease;
+    }
+    
+    .powerup-button:hover::before {
+        transform: translateY(-81px) rotate(0);
+        opacity: 1;
+    }
+    
+    .powerup-button::after {
+        opacity: 0;
+        content: '';
+        position: absolute;
+        height: 0;
+        width: 0;
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        border-top: 10px solid #000000e8;
+        transform: translateY(-61px) rotate(25deg);
+        transition: 0.2 ease;
+    }
+    
+    .powerup-button:hover::after {
+        transform: translateY(-61px) rotate(0);
+        opacity: 1;
+    }
+    
 }
