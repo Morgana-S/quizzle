@@ -78,9 +78,11 @@ function showQuiz() {
             quizTools.firstChild.appendChild(createPowerUpButton);  
         }
         let powerUpButton = document.getElementsByClassName('powerup-button');
-        powerUpButton[0].innerHTML = '<i class="fa-solid fa-snowflake"></i>';
+        powerUpButton[0].innerHTML = 
+        '<i class="fa-solid fa-snowflake"></i><p class="powerup-label">Freeze Timer</p>';
         powerUpButton[0].setAttribute('onclick', 'freezeTimer(this)');
-        powerUpButton[1].innerHTML = '<i class="fa-solid fa-scale-balanced"></i>';
+        powerUpButton[1].innerHTML = 
+        '<i class="fa-solid fa-scale-balanced"></i><p class="powerup-label">50/50</p>';
         powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers(this)');
         // Creates the box for the timer
         let createTimer = document.createElement('div')
