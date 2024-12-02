@@ -3,28 +3,29 @@ addEventListener("DOMContentLoaded", function() {
     questionRandomizer();
     let startQuizButton = document.getElementById('start-quiz-button');
     startQuizButton.setAttribute('onclick', 'showQuiz()');
-    currentQuestionNumber = 0
-    displayQuestionNumber = 1
-    currentQuestion = randomQuestions[currentQuestionNumber]
-    score = 0;
-    let username;
-})
+});
 
 // Warns user before navigating away from site
 window.onbeforeunload = function() {
     return true;
-}
+};
+
+let currentQuestionNumber = 0;
+let displayQuestionNumber = 1;
+let username;
+let score = 0;
 
 /**
  * Removes the introductory text and creates the basic quiz structure in the DOM.
  */
 function showQuiz() {
-    username = document.getElementById('username')
+    let currentQuestion = randomQuestions[currentQuestionNumber];
+     username = document.getElementById('username');
     if (!username.value && !document.getElementById('username-error')) {
-        let createErrorMessage = document.createElement('p')
-        createErrorMessage.id = 'username-error'
-        createErrorMessage.className = 'error-message'
-        createErrorMessage.innerHTML = 'Please enter a name before clicking start quiz.'
+        let createErrorMessage = document.createElement('p');
+        createErrorMessage.id = 'username-error';
+        createErrorMessage.className = 'error-message';
+        createErrorMessage.innerHTML = 'Please enter a name before clicking start quiz.';
         document.getElementById('username').after(createErrorMessage);
     } else if (!username.value && document.getElementById('username-error')) {
         document.getElementById('username').focus();
@@ -36,7 +37,7 @@ function showQuiz() {
         startButton.remove();
         // Creates semantic sections for the quiz-text and quiz-tools sections and adds it to the document
         for (let i = 0; i <= 1; i++) {
-            let createQuizSection = document.createElement('section')
+            let createQuizSection = document.createElement('section');
             document.body.appendChild(createQuizSection);
         }
         let quizSection = document.getElementsByTagName('section');
@@ -45,17 +46,17 @@ function showQuiz() {
         // Creates a div with class 'flex-container' and appends it as a child to the quiz sections
         for (let i = 0;  i <= 1; i++) {
             let createFlex = document.createElement('div');
-            createFlex.className = 'flex-container'
+            createFlex.className = 'flex-container';
             quizSection[i].appendChild(createFlex);
         }
-        quizSection[0].firstChild.id = 'quiz-container'
-        quizSection[1].firstChild.id = 'quiz-tools'
+        quizSection[0].firstChild.id = 'quiz-container';
+        quizSection[1].firstChild.id = 'quiz-tools';
         // Creates a text container for the quiz question and appends it to the flex-container above
         let quizContainer = document.getElementById('quiz-container');
         let createQuizTextBox = document.createElement('div');
         createQuizTextBox.className = 'text-container';
         createQuizTextBox.innerHTML = 
-        `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`
+        `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`;
         quizContainer.appendChild(createQuizTextBox);
         // Creates four buttons to display the answers to the question above
         for (let i = 1; i <= 4; i++) {
@@ -65,7 +66,7 @@ function showQuiz() {
             createQuizButton.innerHTML = 
             `<p>${Object.values(currentQuestion)[i][0]}</p>`;
             // Sets the attribute of "correct" for each box for checkAnswer function
-            createQuizButton.setAttribute('correct', `${Object.values(currentQuestion)[i][1]}`)
+            createQuizButton.setAttribute('correct', `${Object.values(currentQuestion)[i][1]}`);
             // Sets the onclick function of each button to run the showNextQuestion function
             createQuizButton.setAttribute('onclick', 'checkAnswer(this);showNextQuestion()');
             quizContainer.appendChild(createQuizButton);
@@ -87,11 +88,10 @@ function showQuiz() {
         powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers(this)');
         powerUpButton[1].setAttribute('data-powerup', '50/50 - Remove Two Answers');
         // Creates the box for the timer
-        let createTimer = document.createElement('div')
+        let createTimer = document.createElement('div');
         createTimer.className = 'timer';
         createTimer.innerHTML = 
-        `<span>${secondsLeft}</span>
-        <span>seconds`
+        `<span>${secondsLeft}</span><span>seconds</span>`;
         quizTools.firstChild.appendChild(createTimer);
         startTimer();
     }
@@ -112,8 +112,8 @@ function startTimer() {
             stopTimer();
             showNextQuestion();
         }
-    }, 1000)
-};
+    }, 1000);
+}
 
 /**
  * Updates the amount of time left in the timer
@@ -121,8 +121,7 @@ function startTimer() {
 function updateTimeLeft() {
     let timer = document.getElementsByClassName('timer');
     timer[0].innerHTML = 
-    `<span>${secondsLeft}</span>
-    <span>seconds`
+    `<span>${secondsLeft}</span><span>seconds</span>`;
 }
 
 /**
@@ -157,12 +156,12 @@ function removeTwoAnswers(powerupButton) {
     console.log(removeOrderArray);
     let i = 0;
     while (removedAnswers < 2) {
-        let chosenBox = answerBox[removeOrderArray[i]]
+        let chosenBox = answerBox[removeOrderArray[i]];
         let correct = chosenBox.getAttribute('correct');
         if (correct === 'false') {
             chosenBox.classList.add('hidden');
             chosenBox.setAttribute('onclick', '');
-            removedAnswers++
+            removedAnswers++;
             i++;
         } else if (correct === 'true') {
             i++;
@@ -174,7 +173,7 @@ function removeTwoAnswers(powerupButton) {
  * Brings back the removed answer boxes for when the 50/50 powerup is used
  */
 function showAllAnswers() {
-    let hiddenBoxes = document.getElementsByClassName('hidden')
+    let hiddenBoxes = document.getElementsByClassName('hidden');
     while (removedAnswers > 0) {
         hiddenBoxes[0].setAttribute('onclick', 'checkAnswer(this);showNextQuestion()');
         hiddenBoxes[0].classList.remove('hidden');
@@ -197,9 +196,9 @@ function checkAnswer(answerClicked) {
 function showNextQuestion() {
     secondsLeft = 11;
     if (currentQuestionNumber < 9) {
-        currentQuestionNumber++
-        displayQuestionNumber++
-        updateQuestion()
+        currentQuestionNumber++;
+        displayQuestionNumber++;
+        updateQuestion();
         showAllAnswers();
         stopTimer();
         startTimer();
@@ -215,14 +214,14 @@ let answerBox = document.getElementsByClassName('quiz-button');
  * Changes the question displayed in the quiz
  */
 function updateQuestion() {
-    currentQuestion = randomQuestions[currentQuestionNumber]
+    let currentQuestion = randomQuestions[currentQuestionNumber];
     let quizTextBox = document.getElementsByClassName('text-container');
     quizTextBox[0].innerHTML = 
-    `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`
+    `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`;
     for (let i = 0; i < 4; i++) {
         answerBox[i].innerHTML =
             `${Object.values(currentQuestion)[i + 1][0]}`;
-        answerBox[i].setAttribute('correct', `${Object.values(currentQuestion)[i + 1][1]}`)
+        answerBox[i].setAttribute('correct', `${Object.values(currentQuestion)[i + 1][1]}`);
     }
 }
 
@@ -231,7 +230,7 @@ function updateQuestion() {
  */
 function showResults() {
     let section = document.getElementsByTagName('section');
-    for (i = 0; i < 2; i++) {
+    for (let i = 0; i < 2; i++) {
         section[0].remove();
     }
     let createNewSection = document.createElement('section');
@@ -239,14 +238,14 @@ function showResults() {
     document.body.appendChild(createNewSection);
     let createResultsTextBox = document.createElement('div');
     createResultsTextBox.className = 'text-container';
-    createResultsTextBox.id = 'results-text'
+    createResultsTextBox.id = 'results-text';
     createResultsTextBox.innerHTML =
     `<p class="article-content"> Your score was:</p>
-    <p class="score-number">${score}</p>`
-    document.getElementById('quiz-results').appendChild(createResultsTextBox)
+    <p class="score-number">${score}</p>`;
+    document.getElementById('quiz-results').appendChild(createResultsTextBox);
     let createScoreMessage = document.createElement('p');
-    createScoreMessage.className = 'article-content'
-    createScoreMessage.id = 'personalised-message'
+    createScoreMessage.className = 'article-content';
+    createScoreMessage.id = 'personalised-message';
     if (score < 6) {
         createScoreMessage.innerHTML = 
         `Good try ${username.value}, but you can do better! Why not give it another go? Click the logo at the top of the page to try again.`;
@@ -418,4 +417,4 @@ let questionsArray = [
         answer3: ['1945', true],
         answer4: ['1950', false],
     }
-]
+];
