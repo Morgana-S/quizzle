@@ -46,6 +46,10 @@ header {
     font-size: 3rem;
 }
 
+.hidden-heading {
+    display: none;
+}
+
 .text-container {
     display: flex;
     flex-direction: column;
