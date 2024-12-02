@@ -293,8 +293,8 @@ header {
         border-left: 8px solid transparent;
         border-right: 8px solid transparent;
         border-top: 10px solid #000000e8;
-        transform: translateY(-61px) rotate(25deg);
-        transition: 0.2 ease;
+        transform: translateY(-51px) rotate(25deg);
+        transition: 0.2s ease;
     }
     
     .powerup-button:hover::after {
