@@ -154,10 +154,16 @@ header {
 }
 
 .quiz-button:hover {
-    background-color: #9ABF80;
+    background-color: #fae633;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
+
+#start-quiz-button {
+    max-width: 10rem;
+    min-height: 3rem;
+}
+
 
 .powerup-button {
     flex: 1 0 49%;
@@ -190,7 +196,7 @@ header {
 
 
 .powerup-button:hover {
-    background-color: #9ABF80;
+    background-color: #fae633;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
