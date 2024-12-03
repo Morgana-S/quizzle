@@ -1,8 +1,15 @@
+const startQuizButton = document.getElementById('start-quiz-button');
+const usernameInput = document.getElementById('username')
+let currentQuestionNumber = 0;
+let displayQuestionNumber = 1;
+let score = 0;
+let username;
+
 // Ensures the DOM content is loaded before using the random question order below
 addEventListener("DOMContentLoaded", function() {
     questionRandomizer();
-    let startQuizButton = document.getElementById('start-quiz-button');
-    startQuizButton.setAttribute('onclick', 'showQuiz()');
+    usernameInput.setAttribute('oninput', 'usernameValidation()');
+    startQuizButton.setAttribute('onclick', 'usernameValidation()');
 });
 
 // Warns user before navigating away from site
@@ -10,91 +17,97 @@ window.onbeforeunload = function() {
     return true;
 };
 
-let currentQuestionNumber = 0;
-let displayQuestionNumber = 1;
-let username;
-let score = 0;
+function usernameValidation(nameString) {
+    nameString = usernameInput.value;
+    const regex = /[^A-Za-z]/g;
+    const createErrorMessage = document.createElement('p');
+    const errorMessage = document.getElementById('username-error')
+    if (nameString.length < 2) {
+        console.log('string contains forbidden characters')
+        errorMessage.textContent = 'Name too short. Please create a name with 2 or more letters.'
+        errorMessage.style.color = '#ff0000';
+    } else if (regex.test(nameString)){
+        console.log('string too short');
+        errorMessage.textContent = 'Name contains forbidden characters. Please use only uppercase or lowercase letters.'
+        errorMessage.style.color = '#ff0000';
+    } else {
+        console.log('string okay')
+        errorMessage.textContent = 'Name is okay to use!';
+        errorMessage.style.color = '#008000';
+        startQuizButton.setAttribute('onclick', 'showQuiz()');
+    };
+    username = nameString;
+}
 
 /**
  * Removes the introductory text and creates the basic quiz structure in the DOM.
  */
 function showQuiz() {
     let currentQuestion = randomQuestions[currentQuestionNumber];
-     username = document.getElementById('username');
-    if (!username.value && !document.getElementById('username-error')) {
-        let createErrorMessage = document.createElement('p');
-        createErrorMessage.id = 'username-error';
-        createErrorMessage.className = 'error-message';
-        createErrorMessage.innerHTML = 'Please enter a name before clicking start quiz.';
-        document.getElementById('username').after(createErrorMessage);
-    } else if (!username.value && document.getElementById('username-error')) {
-        document.getElementById('username').focus();
-    } else {
-        // Removes the introduction text and start button
-        let introduction = document.getElementById('introduction');
-        let startButton = document.getElementById('start-quiz');
-        introduction.remove();
-        startButton.remove();
-        // Creates semantic sections for the quiz-text and quiz-tools sections and adds it to the document
-        for (let i = 0; i <= 1; i++) {
-            let createQuizSection = document.createElement('section');
-            document.body.appendChild(createQuizSection);
-        }
-        let quizSection = document.getElementsByTagName('section');
-        quizSection[0].id = 'quiz-text-section';
-        quizSection[1].id = 'quiz-tools';
-        // Creates a div with class 'flex-container' and appends it as a child to the quiz sections
-        for (let i = 0;  i <= 1; i++) {
-            let createFlex = document.createElement('div');
-            createFlex.className = 'flex-container';
-            quizSection[i].appendChild(createFlex);
-        }
-        quizSection[0].firstChild.id = 'quiz-container';
-        quizSection[1].firstChild.id = 'quiz-tools';
-        // Creates a text container for the quiz question and appends it to the flex-container above
-        let quizContainer = document.getElementById('quiz-container');
-        let createQuizTextBox = document.createElement('div');
-        createQuizTextBox.className = 'text-container';
-        createQuizTextBox.innerHTML = 
-        `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`;
-        quizContainer.appendChild(createQuizTextBox);
-        // Creates four buttons to display the answers to the question above
-        for (let i = 1; i <= 4; i++) {
-            let createQuizButton = document.createElement('button');
-            createQuizButton.className = 'quiz-button';
-            // Displays the quiz answer text as html inside the button
-            createQuizButton.innerHTML = 
-            `<p>${Object.values(currentQuestion)[i][0]}</p>`;
-            // Sets the attribute of "correct" for each box for checkAnswer function
-            createQuizButton.setAttribute('correct', `${Object.values(currentQuestion)[i][1]}`);
-            // Sets the onclick function of each button to run the showNextQuestion function
-            createQuizButton.setAttribute('onclick', 'checkAnswer(this);showNextQuestion()');
-            quizContainer.appendChild(createQuizButton);
-        }
-        // Creates the boxes for the power-ups
-        let quizTools = document.getElementById('quiz-tools');
-        for (let i = 0; i <= 1; i++) {
-            let createPowerUpButton = document.createElement('button');
-            createPowerUpButton.className = 'powerup-button';
-            quizTools.firstChild.appendChild(createPowerUpButton);  
-        }
-        let powerUpButton = document.getElementsByClassName('powerup-button');
-        powerUpButton[0].innerHTML = 
-        '<i class="fa-solid fa-snowflake"></i><p class="powerup-label-quiz">Freeze Timer</p>';
-        powerUpButton[0].setAttribute('onclick', 'freezeTimer(this)');
-        powerUpButton[0].setAttribute('data-powerup', 'Freeze timer');
-        powerUpButton[1].innerHTML = 
-        '<i class="fa-solid fa-scale-balanced"></i><p class="powerup-label-quiz">50/50</p>';
-        powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers(this)');
-        powerUpButton[1].setAttribute('data-powerup', '50/50 - Remove Two Answers');
-        // Creates the box for the timer
-        let createTimer = document.createElement('div');
-        createTimer.className = 'timer';
-        createTimer.innerHTML = 
-        `<span>${secondsLeft}</span><span>seconds</span>`;
-        quizTools.firstChild.appendChild(createTimer);
-        startTimer();
+    // Removes the introduction text and start button
+    let introduction = document.getElementById('introduction');
+    let startButton = document.getElementById('start-quiz');
+    introduction.remove();
+    startButton.remove();
+    // Creates semantic sections for the quiz-text and quiz-tools sections and adds it to the document
+    for (let i = 0; i <= 1; i++) {
+        let createQuizSection = document.createElement('section');
+        document.body.appendChild(createQuizSection);
     }
+    let quizSection = document.getElementsByTagName('section');
+    quizSection[0].id = 'quiz-text-section';
+    quizSection[1].id = 'quiz-tools';
+    // Creates a div with class 'flex-container' and appends it as a child to the quiz sections
+    for (let i = 0;  i <= 1; i++) {
+        let createFlex = document.createElement('div');
+        createFlex.className = 'flex-container';
+        quizSection[i].appendChild(createFlex);
+    }
+    quizSection[0].firstChild.id = 'quiz-container';
+    quizSection[1].firstChild.id = 'quiz-tools';
+    // Creates a text container for the quiz question and appends it to the flex-container above
+    let quizContainer = document.getElementById('quiz-container');
+    let createQuizTextBox = document.createElement('div');
+    createQuizTextBox.className = 'text-container';
+    createQuizTextBox.innerHTML = 
+    `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`;
+    quizContainer.appendChild(createQuizTextBox);
+    // Creates four buttons to display the answers to the question above
+    for (let i = 1; i <= 4; i++) {
+        let createQuizButton = document.createElement('button');
+        createQuizButton.className = 'quiz-button';
+        // Displays the quiz answer text as html inside the button
+        createQuizButton.innerHTML = 
+        `<p>${Object.values(currentQuestion)[i][0]}</p>`;
+        // Sets the attribute of "correct" for each box for checkAnswer function
+        createQuizButton.setAttribute('correct', `${Object.values(currentQuestion)[i][1]}`);
+        // Sets the onclick function of each button to run the showNextQuestion function
+        createQuizButton.setAttribute('onclick', 'checkAnswer(this);showNextQuestion()');
+        quizContainer.appendChild(createQuizButton);
+    }
+    // Creates the boxes for the power-ups
+    let quizTools = document.getElementById('quiz-tools');
+    for (let i = 0; i <= 1; i++) {
+        let createPowerUpButton = document.createElement('button');
+        createPowerUpButton.className = 'powerup-button';
+        quizTools.firstChild.appendChild(createPowerUpButton);  
+    }
+    let powerUpButton = document.getElementsByClassName('powerup-button');
+    powerUpButton[0].innerHTML = 
+    '<i class="fa-solid fa-snowflake"></i><p class="powerup-label-quiz">Freeze Timer</p>';
+    powerUpButton[0].setAttribute('onclick', 'freezeTimer(this)');
+    powerUpButton[0].setAttribute('data-powerup', 'Freeze timer');
+    powerUpButton[1].innerHTML = 
+    '<i class="fa-solid fa-scale-balanced"></i><p class="powerup-label-quiz">50/50</p>';
+    powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers(this)');
+    powerUpButton[1].setAttribute('data-powerup', '50/50 - Remove Two Answers');
+    // Creates the box for the timer
+    let createTimer = document.createElement('div');
+    createTimer.className = 'timer';
+    createTimer.innerHTML = 
+    `<span>${secondsLeft}</span><span>seconds</span>`;
+    quizTools.firstChild.appendChild(createTimer);
+    startTimer();
 }
 
 let secondsLeft = 10;
@@ -248,13 +261,13 @@ function showResults() {
     createScoreMessage.id = 'personalised-message';
     if (score < 6) {
         createScoreMessage.innerHTML = 
-        `Good try ${username.value}, but you can do better! Why not give it another go? Click the logo at the top of the page to try again.`;
+        `Good try ${username}, but you can do better! Why not give it another go? Click the logo at the top of the page to try again.`;
     } else if(score < 10) {
         createScoreMessage.innerHTML = 
-        `You did really well, ${username.value}! Just a few more points for a perfect score! Click the logo at the top of the page to try again.`;
+        `You did really well, ${username}! Just a few more points for a perfect score! Click the logo at the top of the page to try again.`;
     } else {
         createScoreMessage.innerHTML = 
-        `Wow, a perfect score! Excellent work, ${username.value}! Be sure to compare this with your friends! If you want to try some new questions, Click the logo at the top of the page to try again.`;
+        `Wow, a perfect score! Excellent work, ${username}! Be sure to compare this with your friends! If you want to try some new questions, Click the logo at the top of the page to try again.`;
     }
     document.getElementById('results-text').appendChild(createScoreMessage);
 }
