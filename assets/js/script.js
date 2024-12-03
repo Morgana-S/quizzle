@@ -1,10 +1,10 @@
 const startQuizButton = document.getElementById('start-quiz-button');
 const usernameInput = document.getElementById('username')
+const startingSeconds = 10;
 let currentQuestionNumber = 0;
 let displayQuestionNumber = 1;
 let score = 0;
 let username;
-
 // Ensures the DOM content is loaded before using the random question order below
 addEventListener("DOMContentLoaded", function() {
     questionRandomizer();
@@ -23,15 +23,12 @@ function usernameValidation(nameString) {
     const createErrorMessage = document.createElement('p');
     const errorMessage = document.getElementById('username-error')
     if (nameString.length < 2) {
-        console.log('string contains forbidden characters')
         errorMessage.textContent = 'Name too short. Please create a name with 2 or more letters.'
         errorMessage.style.color = '#ff0000';
     } else if (regex.test(nameString)){
-        console.log('string too short');
         errorMessage.textContent = 'Name contains forbidden characters. Please use only uppercase or lowercase letters.'
         errorMessage.style.color = '#ff0000';
     } else {
-        console.log('string okay')
         errorMessage.textContent = 'Name is okay to use!';
         errorMessage.style.color = '#008000';
         startQuizButton.setAttribute('onclick', 'showQuiz()');
@@ -105,25 +102,35 @@ function showQuiz() {
     let createTimer = document.createElement('div');
     createTimer.className = 'timer';
     createTimer.innerHTML = 
-    `<span>${secondsLeft}</span><span>seconds</span>`;
+    `<span class='timer-span'>${secondsLeft}</span><span class='timer-span'>seconds</span>`;
     quizTools.firstChild.appendChild(createTimer);
     startTimer();
 }
 
 let secondsLeft = 10;
-let timer;
 
 /**
  * Starts the timer
  */
 function startTimer() {
-    secondsLeft = 11;
+    let timerSpan = document.getElementsByClassName('timer-span');
     timer = setInterval(function() {
         secondsLeft--;
         updateTimeLeft();
         if (secondsLeft === 0) {
+            for (let i = 0; i < timerSpan.length; i++) {
+                timerSpan[i].style.color = '#ff0000';
+            }
             stopTimer();
             showNextQuestion();
+        } else if (secondsLeft < 6) {
+            for (let i = 0; i < timerSpan.length; i++) {
+                timerSpan[i].style.color = '#ff0000';
+            }
+        } else if (secondsLeft > 6) {
+            for (let i = 0; i < timerSpan.length; i++) {
+                timerSpan[i].style.color = '#000000';
+            }
         }
     }, 1000);
 }
@@ -134,7 +141,7 @@ function startTimer() {
 function updateTimeLeft() {
     let timer = document.getElementsByClassName('timer');
     timer[0].innerHTML = 
-    `<span>${secondsLeft}</span><span>seconds</span>`;
+    `<span class='timer-span'>${secondsLeft}</span><span class='timer-span'>seconds</span>`;
 }
 
 /**
@@ -166,7 +173,6 @@ function removeTwoAnswers(powerupButton) {
             removeOrderArray.push(randomNumber);
         }
     }
-    console.log(removeOrderArray);
     let i = 0;
     while (removedAnswers < 2) {
         let chosenBox = answerBox[removeOrderArray[i]];
