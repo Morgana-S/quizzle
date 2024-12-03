@@ -8,10 +8,10 @@
     <meta name="description" content="Quizzle! A fun quiz with ten questions. Have you got what it takes?">
     <meta name="keywords" content="Quizzle, Quiz, Quiz questions, Easy quiz, Hard quiz, Entertainment">
     <meta name="author" content="Morgana Stone">
-    <!-- Stylesheet -->
-    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Title -->
     <title>Quizzle!</title>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/favicon/favicon-96x96.png" sizes="96x96">
     <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
@@ -57,6 +57,8 @@
                 </div>
                 <label for="username">Enter your name below (Please use letters only - no numbers or special characters !$? etc):</label>
                 <input type="text" id="username">
+                <!-- Error message is empty by default - populates with text in data validation -->
+                <p id="username-error" class="error-message"></p>
                 <p class="article-content">You can always click the Quizzle logo at the top of the page to restart the quiz.</p>
                 <p class="article-content">Click below to begin the quiz - best of luck!</p>
             </div>
