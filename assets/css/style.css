@@ -149,11 +149,11 @@ header {
     margin: 0 0 0.5rem;
 }
 
-.quiz-button p {
+.quiz-button p, .start-quiz-button p {
     padding: 0 1rem;
 }
 
-.quiz-button:hover {
+.quiz-button:hover, .start-quiz-button:hover {
     background-color: #fae633;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
