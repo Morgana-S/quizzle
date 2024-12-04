@@ -41,6 +41,9 @@ Tooltips | Test that tooltips display correctly. | Tooltips are hovered over wit
 Restart Quiz Functionality | Test that the quiz is able to be restarted. | Button is pressed both during the quiz, and at the end of the quiz. Check that all expected functions (timer, power-ups, toolstips, logo image link) are functioning successfully after restart button is pressed. | All functions working successfully.|
 |Custom Exit-Intent Modal | Test that modal displays intended behaviour regarding clicking, how often the modal is shown. | Modal is triggered by mouse leaving the document body, modal link is clicked, modal backdrop is clicked to close modal, mouse leaves document body again to confirm the modal only displays once. | All tests completed and modal is performing as expected. | 
 Quiz Buttons | Test that all quiz buttons are functional, both before and after powerup usage. | Go through the quiz, selecting one button for each answer 10 times, using a powerup and repeating the previous test. Restart the quiz and carry out the same tests again.| All quiz buttons maintained functionality both before and after powerup usage and after restarting the quiz.|
+Scoring System | Test that scores are being recorded correctly. | Three sample quizes taken, where the score was manipulated deliberately by providing correct answers to a certain number of questions (4 correct answers, 8 correct answers, 10 correct answers) | Scoring system is recording scores correctly. | 
+Timer | Check Timer is recording the time correctly. | Allow timer to run down to zero seconds, ensure that next question is then shown. Check that timer refreshes back to ten seconds. Freeze the timer and then ensure that the timer remains frozen for the current question. Click the next question and ensure timer restarts. | Timer functionality is working as intended for the most part - However, timer display is inconsistent and sometimes lingers on either ten seconds or 0 seconds for too long. Bug discovered where the timer displays "9" seconds when reinitialising rather than 10 seconds. Temporary workaround detailed below in the Bugs section.
+
 
 ## Peer Reviewed Testing
 - The website was tested by three users on a variety of devices, from mobile phones to tablets and desktop PCs. User reports on website feedback detailed below.
@@ -57,7 +60,8 @@ Quiz Buttons | Test that all quiz buttons are functional, both before and after 
     - Cause: The showNextQuestion function was calling first, causing the question to change and the checkAnswer to check the value of the button after it had changed.
     - Fix: Change onClick to checkAnswer before calling showNextQuestion.
 - The timer appears to "start" at 9 seconds if the secondsLeft variable is set to 10.
-    - Cause: This appears to be due to the timer counting '0' seconds as the 10th second. As this is not displayed to the user, I have set the starting time for each function activation to 11 seconds.
+    - Cause: This appears to be due to the timer counting '0' seconds as the 10th second.
+    - Workaround: As this is not displayed to the user, I have set the starting time for each function activation to 11 seconds. For all intents and purposes, this indicates that the user has 10 seconds left at the start of the question.
 ## Code Validation
 The website consists of one page, which was validated with the W3C HTML Validator and W3C Jigsaw CSS Validator, as shown below:
 ### HTML
