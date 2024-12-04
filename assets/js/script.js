@@ -22,10 +22,10 @@ addEventListener("DOMContentLoaded", function() {
     startQuizButton.setAttribute('onclick', 'usernameValidation()');
 });
 
-// Adds a modal when the user's mouse leaves the document 
-document.addEventListener("mouseleave", function() {
-    dialog.showModal();
-});
+// // Adds a modal when the user's mouse leaves the document 
+// document.addEventListener("mouseleave", function() {
+//     dialog.showModal();
+// });
 
 // Allows the user to click anywhere outside of the modal box on the document to close it
 dialog.addEventListener('click', event => {
@@ -247,7 +247,7 @@ let removedAnswers = 0;
 /**
  * Removes two incorrect answers from the available options when 50/50 button is pressed
  */
-function removeTwoAnswers(powerupButton) {
+function removeTwoAnswers(powerUpButton) {
     powerUpButton.remove();
     // Creates an order to attempt to remove the wrong answers in - this ensures randomness when removing answers (not the same answers removed each time)
     let removeOrderArray = [];
@@ -262,7 +262,7 @@ function removeTwoAnswers(powerupButton) {
         let chosenBox = answerBox[removeOrderArray[i]];
         let correct = chosenBox.getAttribute('correct');
         if (correct === 'false') {
-            chosenBox.classList.add('hidden');
+            chosenBox.classList.add('hidden-answer');
             chosenBox.setAttribute('onclick', '');
             removedAnswers++;
             i++;
@@ -276,10 +276,10 @@ function removeTwoAnswers(powerupButton) {
  * Brings back the removed answer boxes for when the 50/50 powerup is used
  */
 function showAllAnswers() {
-    let hiddenBoxes = document.getElementsByClassName('hidden');
+    let hiddenBoxes = document.getElementsByClassName('hidden-answer');
     while (removedAnswers > 0) {
         hiddenBoxes[0].setAttribute('onclick', 'checkAnswer(this);showNextQuestion()');
-        hiddenBoxes[0].classList.remove('hidden');
+        hiddenBoxes[0].classList.remove('hidden-answer');
         removedAnswers--;
     }
 }
