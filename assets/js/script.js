@@ -4,7 +4,8 @@ const quizSection = document.getElementsByTagName('section');
 const introduction = document.getElementById('introduction');
 const startButton = document.getElementById('start-quiz');
 const answerBox = document.getElementsByClassName('quiz-button');
-const powerUpButton = document.getElementsByClassName('powerup-button')
+const powerUpButton = document.getElementsByClassName('powerup-button');
+const dialog = document.querySelector('dialog');
 let currentQuestionNumber = 0;
 let displayQuestionNumber = 1;
 let score = 0;
@@ -20,10 +21,23 @@ addEventListener("DOMContentLoaded", function() {
     startQuizButton.setAttribute('onclick', 'usernameValidation()');
 });
 
-// Warns user before navigating away from site
-window.onbeforeunload = function() {
-    return true;
-};
+// Adds a modal when the user's mouse leaves the document 
+document.addEventListener("mouseleave", function() {
+    dialog.showModal();
+})
+
+// Allows the user to click anywhere outside of the modal box on the document to close it
+dialog.addEventListener('click', event => {
+    const dialogDimensions = dialog.getBoundingClientRect();
+    if (
+        event.clientX < dialogDimensions.left ||
+        event.clientX > dialogDimensions.right ||
+        event.clientY < dialogDimensions.top ||
+        event.clientY > dialogDimensions.bottom
+    ) {
+        dialog.close();
+    }
+})
 
 function usernameValidation(nameString) {
     nameString = usernameInput.value;
