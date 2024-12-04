@@ -71,6 +71,7 @@ The design of the website was created so that users:
 ## Credits
 ### Content
 - [Coding2GO](https://www.youtube.com/watch?v=UQKWc2r_41U) - Guidance on creating a tooltip using CSS.
+- [Web Dev Simplified Blog](https://blog.webdevsimplified.com/2023-04/html-dialog/) - Code for custom modal when the mouse leaves the document.
 ### Media
 - [Google Fonts](https://fonts.google.com/) - Fonts used within the project (Gowun Dodum & Boogaloo)
 - [Font Awesome](https://fontawesome.com/icons) - Icons and script for use of icons within the project.
