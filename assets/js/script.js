@@ -3,13 +3,16 @@ const usernameInput = document.getElementById('username');
 const quizSection = document.getElementsByTagName('section');
 const introduction = document.getElementById('introduction');
 const startButton = document.getElementById('start-quiz');
+const answerBox = document.getElementsByClassName('quiz-button');
+const powerUpButton = document.getElementsByClassName('powerup-button')
 let currentQuestionNumber = 0;
 let displayQuestionNumber = 1;
 let score = 0;
 let username;
+let secondsLeft = 10;
 let randomQuestions = [];
 let randomNumbersArray = [];
-const answerBox = document.getElementsByClassName('quiz-button');
+
 // Ensures the DOM content is loaded before using the random question order below
 addEventListener("DOMContentLoaded", function() {
     questionRandomizer();
@@ -88,12 +91,11 @@ function showQuiz() {
     }
     // Creates the boxes for the power-ups
     let quizTools = document.getElementById('quiz-tools');
-    for (let i = 0; i <= 1; i++) {
+    for (let i = 0; i < 3; i++) {
         let createPowerUpButton = document.createElement('button');
         createPowerUpButton.className = 'powerup-button';
         quizTools.firstChild.appendChild(createPowerUpButton);  
     }
-    let powerUpButton = document.getElementsByClassName('powerup-button');
     powerUpButton[0].innerHTML = 
     '<i class="fa-solid fa-snowflake"></i><p class="powerup-label-quiz">Freeze Timer</p>';
     powerUpButton[0].setAttribute('onclick', 'freezeTimer(this)');
@@ -102,6 +104,10 @@ function showQuiz() {
     '<i class="fa-solid fa-scale-balanced"></i><p class="powerup-label-quiz">50/50</p>';
     powerUpButton[1].setAttribute('onclick', 'removeTwoAnswers(this)');
     powerUpButton[1].setAttribute('data-powerup', '50/50 - Remove Two Answers');
+    powerUpButton[2].innerHTML = 
+    '<i class="fa-solid fa-arrow-rotate-left"></i><p class="powerup-label-quiz">Restart Quiz</p>';
+    powerUpButton[2].setAttribute('onclick', 'restartQuiz();');
+    powerUpButton[2].setAttribute('data-powerup', 'Restart Quiz');
     // Creates the box for the timer
     let createTimer = document.createElement('div');
     createTimer.className = 'timer';
@@ -113,6 +119,7 @@ function showQuiz() {
 }
 
 function restartQuiz() {
+    stopTimer();
     while (randomNumbersArray.length){
         randomNumbersArray.pop();
         randomQuestions.pop();
@@ -121,15 +128,13 @@ function restartQuiz() {
     currentQuestionNumber = 0;
     displayQuestionNumber = 1;
     score = 0;
-    stopTimer();
+    secondsLeft = 10;
     while (quizSection.length > 2) {
         quizSection[2].remove();
     }
     introduction.classList.remove('hidden-element');
     startButton.classList.remove('hidden-element');
 }
-
-let secondsLeft = 10;
 
 /**
  * Starts the timer
@@ -186,8 +191,8 @@ let removedAnswers = 0;
 /**
  * Removes two incorrect answers from the available options 
  */
-function removeTwoAnswers(powerupButton) {
-    powerupButton.remove();
+function removeTwoAnswers(powerUpButton) {
+    powerUpButton.remove();
     let removeOrderArray = [];
     while (removeOrderArray.length < 4) {
         let randomNumber = (Math.floor(Math.random() * 4));
