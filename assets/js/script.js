@@ -191,7 +191,7 @@ let removedAnswers = 0;
 /**
  * Removes two incorrect answers from the available options 
  */
-function removeTwoAnswers(powerUpButton) {
+function removeTwoAnswers(powerupButton) {
     powerUpButton.remove();
     let removeOrderArray = [];
     while (removeOrderArray.length < 4) {
@@ -278,9 +278,12 @@ function showResults() {
     for (let i = 2; i < 4; i++) {
         quizSection[i].classList.add('hidden-element');
     }
-    let createNewSection = document.createElement('section');
-    createNewSection.id = 'quiz-results';
-    document.body.appendChild(createNewSection);
+    for (let i = 0; i < 2; i++){
+        let createNewSection = document.createElement('section');
+        document.body.appendChild(createNewSection);
+    }
+    quizSection[4].id ='quiz-results';
+    quizSection[5].id ='restart-section'
     let createResultsTextBox = document.createElement('div');
     createResultsTextBox.className = 'text-container';
     createResultsTextBox.id = 'results-text';
@@ -293,15 +296,27 @@ function showResults() {
     createScoreMessage.id = 'personalised-message';
     if (score < 6) {
         createScoreMessage.innerHTML = 
-        `Good try ${username}, but you can do better! Why not give it another go? Click the logo at the top of the page to try again.`;
+        `Good try ${username}, but you can do better! Why not give it another go? Click the restart button below to try again.`;
     } else if(score < 10) {
         createScoreMessage.innerHTML = 
-        `You did really well, ${username}! Just a few more points for a perfect score! Click the logo at the top of the page to try again.`;
+        `You did really well, ${username}! Just a few more points for a perfect score! Click the restart button below to try again.`;
     } else {
         createScoreMessage.innerHTML = 
-        `Wow, a perfect score! Excellent work, ${username}! Be sure to compare this with your friends! If you want to try some new questions, Click the logo at the top of the page to try again.`;
+        `Wow, a perfect score! Excellent work, ${username}! Be sure to compare this with your friends! If you want to try some new questions, click the restart button below.`;
     }
-    document.getElementById('results-text').appendChild(createScoreMessage);
+    let resultsText = document.getElementById('results-text');
+    resultsText.appendChild(createScoreMessage);
+    let createFlex = document.createElement('div');
+    createFlex.className = 'flex-container';
+    let restartSection = document.getElementById('restart-section');
+    restartSection.appendChild(createFlex);
+    let createPowerUpButton = document.createElement('button');
+    createPowerUpButton.className = 'powerup-button'
+    createPowerUpButton.innerHTML = 
+    '<i class="fa-solid fa-arrow-rotate-left"></i><p class="powerup-label-quiz">Restart Quiz</p>';
+    createPowerUpButton.setAttribute('onclick', 'restartQuiz();');
+    createPowerUpButton.setAttribute('data-powerup', 'Restart Quiz');
+    restartSection.firstChild.appendChild(createPowerUpButton)
 }
 
 
