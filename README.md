@@ -33,7 +33,7 @@ The design of the website was created so that users:
 ## Features
 ### Logo Header
 ![Logo Header Image](/documentation/feature-images/logo-header.png)
-- Simple, recognizable logo whci allows the user to refresh the page. 
+- Simple, recognizable logo which allows the user to refresh the page. 
 - Logo has alt text and aria labelling for accessibility. 
 - Logo is appropriately sized for all viewing devices and is responsive.
 ### Quiz Personalization & Name Validation
@@ -68,10 +68,11 @@ The design of the website was created so that users:
 - The modal can be removed by clicking anywhere except the central text box where the modal displays. The user is given instructions on how to close the modal if they would like to.
 - To prevent user annoyance, the modal will only show once when attempting to leave the page.
 - The modal also warns the user that if they leave the page, their progress will not be saved on the quiz.
+- The link in the modal also opens in a new tab and is ARIA labelled to conform to accessibility standards and practices.
 ## Testing & Bugs
 - For Testing and Bugs, please view the [TESTING.md](/TESTING.md) file.
 
-## Validation & Accessibilty
+## Code Validation & Accessibilty
 - For inforamtion on code validation and accessibilty, please see the [TESTING.md](/TESTING.md) file.
 
 ## Tools
