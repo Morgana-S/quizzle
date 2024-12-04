@@ -73,7 +73,7 @@ The design of the website was created so that users:
 - For Testing and Bugs, please view the [TESTING.md](/TESTING.md) file.
 
 ## Code Validation & Accessibilty
-- For inforamtion on code validation and accessibilty, please see the [TESTING.md](/TESTING.md) file.
+- For information on code validation and accessibilty, please see the [TESTING.md](/TESTING.md) file.
 
 ## Tools
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - Page Structure and Content
