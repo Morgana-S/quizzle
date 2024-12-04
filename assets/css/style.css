@@ -14,9 +14,6 @@ body {
     flex-direction: column;
 }
 
-h1 {
-    font-family: 'Boogaloo', sans-serif;
-}
 
 /* Header Style Rules */
 header {
@@ -44,12 +41,15 @@ header {
 
 .main-heading h1 {
     font-size: 3rem;
+    font-family: 'Boogaloo', sans-serif;
 }
 
+/* Generic class for all hidden elements for javascript interactivity */
 .hidden-element {
     display: none;
 }
 
+/* Flex container for text content */
 .text-container {
     display: flex;
     flex-direction: column;
@@ -80,6 +80,7 @@ header {
     text-align: center;
 }
 
+/* General styling for text content */
 .article-content {
     color: #000000;
     font-family: 'Gowun-Dodum', sans-serif;
@@ -87,6 +88,7 @@ header {
     margin: 1rem;
 }
 
+/* Specific styling for error messages within the text-container */
 .error-message {
     align-self: center;
     font-family: 'Gowun-Dodum', sans-serif;
@@ -95,6 +97,7 @@ header {
     text-align: center;
 }
 
+/* Styling for the question number display */
 .question-number {
     color: #000000;
     font-family: 'Gowun-Dodum', sans-serif;
@@ -103,6 +106,7 @@ header {
     padding: 0.2rem 1rem;
 }
 
+/* Wrapper for power-up container display */
 .powerup-wrapper {
     display: flex;
     flex-wrap: wrap;
@@ -129,6 +133,8 @@ header {
     font-weight: bold;
     text-align: center;
 }
+
+/* Generic flex container with wrap for use in displaying power-ups in the quiz */
 
 .flex-container {
     display: flex;
@@ -164,6 +170,8 @@ header {
     min-height: 3rem;
 }
 
+/* Styling for the modal that shows when mouse focus leaves the document */
+
 dialog {
     background-color: #ffffff;
     outline: none;
@@ -191,6 +199,8 @@ dialog p {
 dialog::backdrop{
     background-color: #6256cab4;
 }
+
+/* Styling for the clickable powerup buttons */
 
 .powerup-button {
     flex: 1 0 49%;
@@ -228,13 +238,13 @@ dialog::backdrop{
     transition: background-color 0.2s ease-in-out;
 }
 
-.hidden{
+.hidden-answer{
     background-color: transparent;
     color: transparent;
     border: none
 }
 
-.hidden:hover {
+.hidden-answer:hover {
     background-color: transparent;
     cursor: auto;
 }
