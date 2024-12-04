@@ -1,10 +1,15 @@
 const startQuizButton = document.getElementById('start-quiz-button');
-const usernameInput = document.getElementById('username')
-const startingSeconds = 10;
+const usernameInput = document.getElementById('username');
+const quizSection = document.getElementsByTagName('section');
+const introduction = document.getElementById('introduction');
+const startButton = document.getElementById('start-quiz');
 let currentQuestionNumber = 0;
 let displayQuestionNumber = 1;
 let score = 0;
 let username;
+let randomQuestions = [];
+let randomNumbersArray = [];
+const answerBox = document.getElementsByClassName('quiz-button');
 // Ensures the DOM content is loaded before using the random question order below
 addEventListener("DOMContentLoaded", function() {
     questionRandomizer();
@@ -44,24 +49,23 @@ function showQuiz() {
     // Removes the introduction text and start button
     let introduction = document.getElementById('introduction');
     let startButton = document.getElementById('start-quiz');
-    introduction.remove();
-    startButton.remove();
+    introduction.classList.add('hidden-element');
+    startButton.classList.add('hidden-element');
     // Creates semantic sections for the quiz-text and quiz-tools sections and adds it to the document
-    for (let i = 0; i <= 1; i++) {
+    for (let i = 0; i < 2; i++) {
         let createQuizSection = document.createElement('section');
         document.body.appendChild(createQuizSection);
     }
-    let quizSection = document.getElementsByTagName('section');
-    quizSection[0].id = 'quiz-text-section';
-    quizSection[1].id = 'quiz-tools';
+    quizSection[2].id = 'quiz-text-section';
+    quizSection[3].id = 'quiz-tools';
     // Creates a div with class 'flex-container' and appends it as a child to the quiz sections
-    for (let i = 0;  i <= 1; i++) {
+    for (let i = 2;  i < 4; i++) {
         let createFlex = document.createElement('div');
         createFlex.className = 'flex-container';
         quizSection[i].appendChild(createFlex);
     }
-    quizSection[0].firstChild.id = 'quiz-container';
-    quizSection[1].firstChild.id = 'quiz-tools';
+    quizSection[2].firstChild.id = 'quiz-container';
+    quizSection[3].firstChild.id = 'quiz-tools';
     // Creates a text container for the quiz question and appends it to the flex-container above
     let quizContainer = document.getElementById('quiz-container');
     let createQuizTextBox = document.createElement('div');
@@ -105,6 +109,24 @@ function showQuiz() {
     `<span class='timer-span'>${secondsLeft}</span><span class='timer-span'>seconds</span>`;
     quizTools.firstChild.appendChild(createTimer);
     startTimer();
+
+}
+
+function restartQuiz() {
+    while (randomNumbersArray.length){
+        randomNumbersArray.pop();
+        randomQuestions.pop();
+    }
+    questionRandomizer();
+    currentQuestionNumber = 0;
+    displayQuestionNumber = 1;
+    score = 0;
+    stopTimer();
+    while (quizSection.length > 2) {
+        quizSection[2].remove();
+    }
+    introduction.classList.remove('hidden-element');
+    startButton.classList.remove('hidden-element');
 }
 
 let secondsLeft = 10;
@@ -227,7 +249,7 @@ function showNextQuestion() {
     }
 }
 
-let answerBox = document.getElementsByClassName('quiz-button');
+
 
 /**
  * Changes the question displayed in the quiz
@@ -235,7 +257,7 @@ let answerBox = document.getElementsByClassName('quiz-button');
 function updateQuestion() {
     let currentQuestion = randomQuestions[currentQuestionNumber];
     let quizTextBox = document.getElementsByClassName('text-container');
-    quizTextBox[0].innerHTML = 
+    quizTextBox[1].innerHTML = 
     `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`;
     for (let i = 0; i < 4; i++) {
         answerBox[i].innerHTML =
@@ -248,9 +270,8 @@ function updateQuestion() {
  * Creates the results text box and displays the score
  */
 function showResults() {
-    let section = document.getElementsByTagName('section');
-    for (let i = 0; i < 2; i++) {
-        section[0].remove();
+    for (let i = 2; i < 4; i++) {
+        quizSection[i].classList.add('hidden-element');
     }
     let createNewSection = document.createElement('section');
     createNewSection.id = 'quiz-results';
@@ -278,8 +299,6 @@ function showResults() {
     document.getElementById('results-text').appendChild(createScoreMessage);
 }
 
-let randomQuestions = [];
-let randomNumbersArray = [];
 
 /**
  * Generates an array of random numbers to call as question indices
