@@ -13,7 +13,8 @@ let username;
 let secondsLeft = 10;
 let randomQuestions = [];
 let randomNumbersArray = [];
-
+let currentQuestion;
+let timer;
 // Ensures the DOM content is loaded before using the random question order below
 addEventListener("DOMContentLoaded", function() {
     questionRandomizer();
@@ -24,7 +25,7 @@ addEventListener("DOMContentLoaded", function() {
 // Adds a modal when the user's mouse leaves the document 
 document.addEventListener("mouseleave", function() {
     dialog.showModal();
-})
+});
 
 // Allows the user to click anywhere outside of the modal box on the document to close it
 dialog.addEventListener('click', event => {
@@ -37,7 +38,7 @@ dialog.addEventListener('click', event => {
     ) {
         dialog.close();
     }
-})
+});
 
 /**
  * Ensures the user's selected name is only alphabetical characters and displays an error if the condition is not met.
@@ -46,32 +47,36 @@ dialog.addEventListener('click', event => {
 function usernameValidation(nameString) {
     nameString = usernameInput.value;
     const regex = /[^A-Za-z]/g;
-    const createErrorMessage = document.createElement('p');
-    const errorMessage = document.getElementById('username-error')
+    const errorMessage = document.getElementById('username-error');
+    // Displays a different error message depending on the conditions of the user's name string
     if (nameString.length < 2) {
-        errorMessage.textContent = 'Name too short. Please create a name with 2 or more letters.'
+        errorMessage.textContent = 'Name too short. Please create a name with 2 or more letters.';
         errorMessage.style.color = '#ff0000';
     } else if (regex.test(nameString)){
-        errorMessage.textContent = 'Name contains forbidden characters. Please use only uppercase or lowercase letters.'
+        errorMessage.textContent = 'Name contains forbidden characters. Please use only uppercase or lowercase letters.';
         errorMessage.style.color = '#ff0000';
     } else {
         errorMessage.textContent = 'Name is okay to use!';
         errorMessage.style.color = '#008000';
         startQuizButton.setAttribute('onclick', 'showQuiz()');
-    };
+    }
     username = nameString;
 }
 
 /**
- * Removes the introductory text and creates the basic quiz structure in the DOM.
+ * Hides the introduction and start quiz buttons.
  */
-function showQuiz() {
-    let currentQuestion = randomQuestions[currentQuestionNumber];
-    // Removes the introduction text and start button
+function hideIntroduction() {
     let introduction = document.getElementById('introduction');
     let startButton = document.getElementById('start-quiz');
     introduction.classList.add('hidden-element');
     startButton.classList.add('hidden-element');
+}
+
+/**
+ * Creates the semantic layout for the quiz and labels each section with appropriate ids.
+ */
+function createQuizLayout() {
     // Creates semantic sections for the quiz-text and quiz-tools sections and adds it to the document
     for (let i = 0; i < 2; i++) {
         let createQuizSection = document.createElement('section');
@@ -87,6 +92,13 @@ function showQuiz() {
     }
     quizSection[2].firstChild.id = 'quiz-container';
     quizSection[3].firstChild.id = 'quiz-tools';
+}
+
+/**
+ * Adds divs for the quiz text and answer sections and fills them from the question pool.
+ */
+function displayQuestions() {
+    currentQuestion = randomQuestions[currentQuestionNumber];
     // Creates a text container for the quiz question and appends it to the flex-container above
     let quizContainer = document.getElementById('quiz-container');
     let createQuizTextBox = document.createElement('div');
@@ -108,13 +120,20 @@ function showQuiz() {
         createQuizButton.setAttribute('onclick', 'checkAnswer(this);showNextQuestion()');
         quizContainer.appendChild(createQuizButton);
     }
-    // Creates the boxes for the power-ups
+}
+
+/**
+ * Creates the elements for the quiz tools section, including the power-ups, restart button, and timer.
+ */
+function displayQuizTools() {
     let quizTools = document.getElementById('quiz-tools');
+    // Creates the boxes for the power-ups
     for (let i = 0; i < 3; i++) {
         let createPowerUpButton = document.createElement('button');
         createPowerUpButton.className = 'powerup-button';
         quizTools.firstChild.appendChild(createPowerUpButton);  
     }
+    // Assigns icons, text labels and powerup information for tooltips to each powerup
     powerUpButton[0].innerHTML = 
     '<i class="fa-solid fa-snowflake"></i><p class="powerup-label-quiz">Freeze Timer</p>';
     powerUpButton[0].setAttribute('onclick', 'freezeTimer(this)');
@@ -134,17 +153,31 @@ function showQuiz() {
     `<span class='timer-span'>${secondsLeft}</span>
     <span class='timer-span'>seconds</span>`;
     quizTools.firstChild.appendChild(createTimer);
-    startTimer();
+}
 
+
+/**
+ * Begins the quiz by hiding the introduction and creating the necessary elements.
+ */
+function showQuiz() {
+    hideIntroduction();
+    createQuizLayout();
+    displayQuestions();
+    displayQuizTools();
+    startTimer();
 }
 
 function restartQuiz() {
+    // Stops the timer
     stopTimer();
+    // Removes all questions from the question pool
     while (randomNumbersArray.length){
         randomNumbersArray.pop();
         randomQuestions.pop();
     }
+    // Regenerates new questions for the pool
     questionRandomizer();
+    // Resets all variables to their starting states
     currentQuestionNumber = 0;
     displayQuestionNumber = 1;
     score = 0;
@@ -152,6 +185,7 @@ function restartQuiz() {
     while (quizSection.length > 2) {
         quizSection[2].remove();
     }
+    // Shows the introduction text and start quiz button again
     introduction.classList.remove('hidden-element');
     startButton.classList.remove('hidden-element');
 }
@@ -160,6 +194,7 @@ function restartQuiz() {
  * Starts the timer
  */
 function startTimer() {
+    // Displays black text when the timer is above 10 seconds, red text if the timer is below 6 seconds
     let timerSpan = document.getElementsByClassName('timer-span');
     timer = setInterval(function() {
         secondsLeft--;
@@ -200,7 +235,7 @@ function stopTimer() {
 }
 
 /**
- * Stops the timer when the button is pressed
+ * Stops the timer when the freeze timer button is pressed
  */
 function freezeTimer(powerUpButton) {
     powerUpButton.remove();
@@ -210,10 +245,11 @@ function freezeTimer(powerUpButton) {
 let removedAnswers = 0;
 
 /**
- * Removes two incorrect answers from the available options 
+ * Removes two incorrect answers from the available options when 50/50 button is pressed
  */
 function removeTwoAnswers(powerupButton) {
     powerUpButton.remove();
+    // Creates an order to attempt to remove the wrong answers in - this ensures randomness when removing answers (not the same answers removed each time)
     let removeOrderArray = [];
     while (removeOrderArray.length < 4) {
         let randomNumber = (Math.floor(Math.random() * 4));
@@ -261,6 +297,7 @@ function checkAnswer(answerClicked) {
  * Function to show the next question, restarts the timer, and brings the answer boxes back if 50/50 powerup used
  */
 function showNextQuestion() {
+    // Amount of seconds left is 11 to show user that they 'start' with 10 seconds - otherwise seconds display starts from 9
     secondsLeft = 11;
     if (currentQuestionNumber < 9) {
         currentQuestionNumber++;
@@ -281,7 +318,7 @@ function showNextQuestion() {
  * Changes the question displayed in the quiz
  */
 function updateQuestion() {
-    let currentQuestion = randomQuestions[currentQuestionNumber];
+    currentQuestion = randomQuestions[currentQuestionNumber];
     let quizTextBox = document.getElementsByClassName('text-container');
     quizTextBox[1].innerHTML = 
     `<p class= "question-number">Question ${displayQuestionNumber} of 10</p>
@@ -294,18 +331,24 @@ function updateQuestion() {
 }
 
 /**
- * Creates the results text box and displays the score
+ * Hides the questions, answers and tools at the end of the quiz.
  */
-function showResults() {
+function hideQuizAndTools() {
     for (let i = 2; i < 4; i++) {
         quizSection[i].classList.add('hidden-element');
     }
+}
+
+/**
+ * Creates the results section and interior div, text areas and shows the user's score.
+ */
+function createResultsSection(){
     for (let i = 0; i < 2; i++){
         let createNewSection = document.createElement('section');
         document.body.appendChild(createNewSection);
     }
     quizSection[4].id ='quiz-results';
-    quizSection[5].id ='restart-section'
+    quizSection[5].id ='restart-section';
     let createResultsTextBox = document.createElement('div');
     createResultsTextBox.className = 'text-container';
     createResultsTextBox.id = 'results-text';
@@ -313,6 +356,12 @@ function showResults() {
     `<p class="article-content"> Your score was:</p>
     <p class="score-number">${score}</p>`;
     document.getElementById('quiz-results').appendChild(createResultsTextBox);
+}
+
+/**
+ * Creates a personalised message based on the user's name input at the start of the quiz and their score
+ */
+function personalisedScoreMessage(){
     let createScoreMessage = document.createElement('p');
     createScoreMessage.className = 'article-content';
     createScoreMessage.id = 'personalised-message';
@@ -328,17 +377,33 @@ function showResults() {
     }
     let resultsText = document.getElementById('results-text');
     resultsText.appendChild(createScoreMessage);
+}
+
+/**
+ * Creates a restart button at the end of the quiz.
+ */
+function createRestartButton(){
     let createFlex = document.createElement('div');
     createFlex.className = 'flex-container';
     let restartSection = document.getElementById('restart-section');
     restartSection.appendChild(createFlex);
     let createPowerUpButton = document.createElement('button');
-    createPowerUpButton.className = 'powerup-button'
+    createPowerUpButton.className = 'powerup-button';
     createPowerUpButton.innerHTML = 
     '<i class="fa-solid fa-arrow-rotate-left"></i><p class="powerup-label-quiz">Restart Quiz</p>';
     createPowerUpButton.setAttribute('onclick', 'restartQuiz();');
     createPowerUpButton.setAttribute('data-powerup', 'Restart Quiz');
-    restartSection.firstChild.appendChild(createPowerUpButton)
+    restartSection.firstChild.appendChild(createPowerUpButton);
+}
+
+/**
+ * Creates the results text box and displays the score
+ */
+function showResults() {
+    hideQuizAndTools();
+    createResultsSection();
+    personalisedScoreMessage();
+    createRestartButton();
 }
 
 
