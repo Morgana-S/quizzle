@@ -1,7 +1,7 @@
 # Quizzle - Test your knowledge with our quiz!
 ![Responsive Design Showcase](/documentation/feature-images/responsive-design-showcase.png)
 ## About
-Quizzle is a simple quiz application which features interactivity through use of the JavaScript programming language. The purpose of the website is to challenge users to take part in a multiple-choice quiz where they can select an answer and then find out their score at the end of the quiz.
+Quizzle is a simple quiz application which features interactivity through use of the JavaScript programming language. The purpose of the website is to challenge users to take part in a multiple-choice quiz where they can select an answer and then find out their score at the end of the quiz. The quiz utilises a randomness element to ensure replayability by pulling from a pool of questions.
 
 The deployed version of the site can be accessed on GitHub Pages [here.](https://morgana-s.github.io/quizzle/)
 
@@ -30,12 +30,13 @@ The design of the website was created so that users:
 - As a frequent visitor, I would like to be able to provide feedback on the quiz.
 
 ## Features
-### Logo Header / Restart Quiz
+### Logo Header
 ### Page Navigation Warning
 ### Quiz Personalization
 ### Randomized Questions
 ### Powerups
 ### Tooltips
+### Restart Quiz Functionality
 
 ## Testing & Bugs
 - For Testing and Bugs, please view the [TESTING.md](/TESTING.md) file.
