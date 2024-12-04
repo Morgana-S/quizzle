@@ -116,6 +116,7 @@ header {
 .powerup-box {
     border: 3px solid #6256CA;
     border-radius: 25px;
+    max-width: 10rem;
     margin: 1rem;
     padding: 1rem;
 }
@@ -287,15 +288,20 @@ dialog::backdrop{
 
 /* Media Query and Styles for Tablet Users */
 @media screen and (min-width: 768px) {
+    .powerup-box {
+        margin: 1rem 2rem;
+    }
+
     .timer {
         min-width: 24rem;
     }
+
 }
 
 /* Media Query and Styles for Laptop/Desktop Users */
 @media screen and (min-width: 1024px) {
     .powerup-box {
-        margin: 1rem 2rem;
+        max-width: 10rem;
     }
 
     .powerup-label {
