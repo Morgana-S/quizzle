@@ -28,16 +28,46 @@ The design of the website was created so that users:
 - As a frequent visitor, I want the quiz to remember my name for personalization of the score message.
 - As a frequent visitor, I would like a way to compare my score on the quiz with my friends.
 - As a frequent visitor, I would like to be able to provide feedback on the quiz.
+- As a frequent visitor, I would like to be able to get different questions if I do the quiz multiple times.
 
 ## Features
 ### Logo Header
-### Page Navigation Warning
-### Quiz Personalization
+![Logo Header Image](/documentation/feature-images/logo-header.png)
+- Simple, recognizable logo whci allows the user to refresh the page. 
+- Logo has alt text and aria labelling for accessibility. 
+- Logo is appropriately sized for all viewing devices and is responsive.
+### Quiz Personalization & Name Validation
+![Name Validation Showcase](/documentation/feature-images/name-validation.gif)
+![Personal Score Message - Low Score](/documentation/feature-images/personal-score-low.png)
+![Personal Score Message - Middle Score](/documentation/feature-images/personal-score-mid.png)
+![Personal Score Message - High Score](/documentation/feature-images/personal-score-high.png)
+- Using regex and event listeners for oninput, the user is guided to create a suitable name for their personalised score below.
+- Using template literals and storing the user's name as a variable, a personalised score message can be provded based on how well the user performed in the quiz.
 ### Randomized Questions
+![Random Questions Showcase](/documentation/feature-images/random-questions.gif)
+- Questions are randomised by generating a question pool using Math.random(). This ensures that the user isn't getting the same questions each time.
+- The question pool is formatted as an array of objects, which allows for new questions to be added easily. This also allows for the questions property's to be pulled as part of the functions for the site.
 ### Powerups
+![Freeze Timer](/documentation/feature-images/freeze-timer.gif)
+![Fifty-Fifty](/documentation/feature-images/fifty-fifty.gif)
+- The site contains two powerups for users to utilise, each being available once per quiz. 
+    - Freeze Timer - this freezes the timer to allow the user to answer the question at their own pace.
+    - 50/50 (Fifty-Fifty) - This removes two random wrong answers from the current quiz question, allowing the user a 50% chance to pick the right answer.
 ### Tooltips
+![Tooltips](/documentation/feature-images/tooltips.gif)
+- The powerup and restart buttons are labelled with tooltips which, when hovered over, display the function of each button.
+- The tooltips have a sleek and appealing transition design using CSS, which adds to the UX appeal of the website.
+- For responsiveness and accessibility purposes, on screens where a mouse cursor is not necessarily an option (such as mobile phones and tablets), the tooltips are replaced with a label which is present underneath each icon.
 ### Restart Quiz Functionality
-
+![Restart Quiz Function](/documentation/feature-images/restart-quiz.gif)
+- The user is able to restart the quiz using one of the buttons available. This can be done mid-quiz, or at the end of the quiz.
+- This allows the user to go back to the start if they need to reread the instructions, or to retry the quiz if they are not satisfied with their score, or would like to try different questions.
+### Custom Exit-Intent Modal
+![Exit Modal Functionality Showcase](/documentation/feature-images/exit-modal.gif)
+- When the user's mouse leaves the page, an exit-intent modal displays asking the user to provide feedback on the GitHub issues page.
+- The modal can be removed by clicking anywhere except the central text box where the modal displays. The user is given instructions on how to close the modal if they would like to.
+- To prevent user annoyance, the modal will only show once when attempting to leave the page.
+- The modal also warns the user that if they leave the page, their progress will not be saved on the quiz.
 ## Testing & Bugs
 - For Testing and Bugs, please view the [TESTING.md](/TESTING.md) file.
 
@@ -46,10 +76,13 @@ The design of the website was created so that users:
 
 ## Tools
 - [HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) - Page Structure and Content
+- [HTML <dialog> Element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) - Creation of an exit-intent modal.
 - [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) - Page appearance and styling rules.
 - [CSS Flexbox](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox) - Used to add responsiveness to pages.
 - [CSS Grid](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_grid_layout) - Used to arrange tooltips for powerups.
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) - Page interactivity and functionality.
+- [JavaScript Regular Expressions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_expressions) - Username validation.
+- [JavaScript Event Listeners](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener) - Interactivity based on certain conditions being met.
 - [Visual Studio Code Desktop](https://code.visualstudio.com/) - IDE used for project development.
 - [Git](https://git-scm.com/) - Version control.
 - [GitHub Desktop](https://desktop.github.com/download/) - Additional version control.
@@ -73,6 +106,7 @@ The design of the website was created so that users:
 ### Content
 - [Coding2GO](https://www.youtube.com/watch?v=UQKWc2r_41U) - Guidance on creating a tooltip using CSS.
 - [Web Dev Simplified Blog](https://blog.webdevsimplified.com/2023-04/html-dialog/) - Code for custom modal when the mouse leaves the document.
+- [RegExr.com](https://regexr.com/) - Creation of appropriate regex for name validation. 
 ### Media
 - [Google Fonts](https://fonts.google.com/) - Fonts used within the project (Gowun Dodum & Boogaloo)
 - [Font Awesome](https://fontawesome.com/icons) - Icons and script for use of icons within the project.
