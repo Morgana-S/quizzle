@@ -74,7 +74,8 @@ function showQuiz() {
     let createQuizTextBox = document.createElement('div');
     createQuizTextBox.className = 'text-container';
     createQuizTextBox.innerHTML = 
-    `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`;
+    `<p class= "question-number">Question ${displayQuestionNumber} of 10</p>
+    <p class="article-content">${currentQuestion.text}</p>`;
     quizContainer.appendChild(createQuizTextBox);
     // Creates four buttons to display the answers to the question above
     for (let i = 1; i <= 4; i++) {
@@ -112,7 +113,8 @@ function showQuiz() {
     let createTimer = document.createElement('div');
     createTimer.className = 'timer';
     createTimer.innerHTML = 
-    `<span class='timer-span'>${secondsLeft}</span><span class='timer-span'>seconds</span>`;
+    `<span class='timer-span'>${secondsLeft}</span>
+    <span class='timer-span'>seconds</span>`;
     quizTools.firstChild.appendChild(createTimer);
     startTimer();
 
@@ -168,7 +170,8 @@ function startTimer() {
 function updateTimeLeft() {
     let timer = document.getElementsByClassName('timer');
     timer[0].innerHTML = 
-    `<span class='timer-span'>${secondsLeft}</span><span class='timer-span'>seconds</span>`;
+    `<span class='timer-span'>${secondsLeft}</span>
+    <span class='timer-span'>seconds</span>`;
 }
 
 /**
@@ -263,7 +266,8 @@ function updateQuestion() {
     let currentQuestion = randomQuestions[currentQuestionNumber];
     let quizTextBox = document.getElementsByClassName('text-container');
     quizTextBox[1].innerHTML = 
-    `<p class= "question-number">Question ${displayQuestionNumber} of 10</p><p class="article-content">${currentQuestion.text}</p>`;
+    `<p class= "question-number">Question ${displayQuestionNumber} of 10</p>
+    <p class="article-content">${currentQuestion.text}</p>`;
     for (let i = 0; i < 4; i++) {
         answerBox[i].innerHTML =
             `${Object.values(currentQuestion)[i + 1][0]}`;
