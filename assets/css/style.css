@@ -46,7 +46,7 @@ header {
     font-size: 3rem;
 }
 
-.hidden-heading {
+.hidden-element {
     display: none;
 }
 
@@ -136,7 +136,7 @@ header {
     margin: 0.5rem 4rem;
 }
 
-.quiz-button {
+.start-quiz-button, .quiz-button {
     flex: 1 0 45%;
     min-height: 8rem;
     width: 5rem;
