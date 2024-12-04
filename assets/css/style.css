@@ -231,13 +231,13 @@ dialog::backdrop{
     text-align: center;
 }
 
-
 .powerup-button:hover {
     background-color: #fae633;
     cursor: pointer;
     transition: background-color 0.2s ease-in-out;
 }
 
+/* Styles to hide answers hidden by powerup and prevent interactivity */
 .hidden-answer{
     background-color: transparent;
     color: transparent;
@@ -249,6 +249,7 @@ dialog::backdrop{
     cursor: auto;
 }
 
+/* Timer styles */
 .timer {
     display: flex;
     flex-direction: column;
@@ -273,6 +274,8 @@ dialog::backdrop{
     text-align: center;
     padding: 0 1rem;
 }
+
+/* Style for the score number on results page */
 
 .score-number {
     color: #000000;
@@ -307,10 +310,13 @@ dialog::backdrop{
         min-width: 30em;
     }
 
+    /* Disables the powerup label in favour of the tooltype styles below */
+
     .powerup-label-quiz {
         display: none;
     }
     
+    /* Styles to create tooltips on larger screens where a cursor can hover on the box */
 
     .powerup-button::before {
         position: absolute;
