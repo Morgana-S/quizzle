@@ -39,6 +39,10 @@ dialog.addEventListener('click', event => {
     }
 })
 
+/**
+ * Ensures the user's selected name is only alphabetical characters and displays an error if the condition is not met.
+ * @param {*} nameString - Name input by user
+ */
 function usernameValidation(nameString) {
     nameString = usernameInput.value;
     const regex = /[^A-Za-z]/g;
