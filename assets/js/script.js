@@ -226,8 +226,8 @@ function startTimer() {
  * Updates the amount of time left in the timer
  */
 function updateTimeLeft() {
-    let timer = document.getElementsByClassName('timer');
-    timer[0].innerHTML = 
+    let timerElement = document.getElementsByClassName('timer');
+    timerElement[0].innerHTML = 
     `<span class='timer-span'>${secondsLeft}</span>
     <span class='timer-span'>seconds</span>`;
 }
