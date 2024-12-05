@@ -3,12 +3,12 @@
 ### Compatability
 | Test | Method | Results |
 | --- | --- |---|
-|Browser - basic functionality | Website was opened with Microsoft Edge, Google Chrome, and Mozilla Firefox. | Webpage loaded correctly on all tested browsers. Further information on individual tests carried out below in 'functionality' section.
-| Device - basic functionality | Website was opened using a desktop PC, Google Pixel 7 Mobile device, iPhone 14, and iPad. | Webpage loaded correctly on all tested devices. Further information on individual tests carried out below in functionality section.
+|Browser - basic functionality | Website was opened with Microsoft Edge, Google Chrome, and Mozilla Firefox. Quiz functionality was tested using the functionality methods below. | Webpage loaded correctly on all tested browsers. Further information on individual tests carried out below in 'functionality' section.
+| Device - basic functionality | Website was opened using a desktop PC, Google Pixel 7 Mobile device, iPhone 14, and iPad. Quiz functionality was tested using the functionality methods below. | Webpage loaded correctly on all tested devices. Further information on individual tests carried out below in functionality section.
 ### Responsiveness
 | Test | Method | Results |
 | --- | --- | --- |
-| Website Navigation | Webpage was opened and navigated to using Responsive Viewer to take screenshots | Website is displaying in a satisfactory fashion. Please see below for screenshots.
+| Website Navigation | Webpage was opened and navigated to using Responsive Viewer to take screenshots. | Website is displaying in a satisfactory fashion. Please see below for screenshots.
 #### Introduction Section
 ![iPhone Pro - Introduction Section](/documentation/testing-images/introduction-iphone-pro.png)
 ![iPhone 14 - Introduction Section](/documentation/testing-images/introduction-iphone.png)
@@ -37,7 +37,7 @@ The following tests were carried out to determine the functionality of the websi
 |Randomized Questions| Confirm that quiz is loading random questions each time the game is started. | Call the randomQuestions variable at different stages, including when the DOM content has loaded and when the quiz is restarted. | randomQuestions variable returns different questions when questionRandomizer function has been run, both on content load and restart quiz function. |
 Powerup - Freeze Timer | Confirm the timer functions in line with expected behaviours. | Test if the timer is frozen on use, that the powerup button disappears, and the clock is restarted with the next question. | All conditions met successfully. Timer function is a little unreliable as detailed in bugs section below. | 
 |Powerup - 50/50| Confirm that the 50/50 functions in line with expected behaviours. | Test if  two wrong answers are removed on use, the powerup button is removed on use, all removed answers are not interactable, and that removed answer boxes are redisplayed on next question. | All conditions met successfully. | 
-Tooltips | Test that tooltips display correctly. | Tooltips are hovered over with the mouse cursor. Test carried out on different browsers to confirm translate CSS was being correctly displayed | All tooltips display successfully. |
+Tooltips | Test that tooltips display correctly. | Tooltips are hovered over with the mouse cursor. Test carried out on different browsers to confirm translate CSS was being correctly displayed | All tooltips display successfully. On tablet and phone screen sizes, a label takes the place of the tooltip to account for a lack of cursor. |
 Restart Quiz Functionality | Test that the quiz is able to be restarted. | Button is pressed both during the quiz, and at the end of the quiz. Check that all expected functions (timer, power-ups, toolstips, logo image link) are functioning successfully after restart button is pressed. | All functions working successfully.|
 |Custom Exit-Intent Modal | Test that modal displays intended behaviour regarding clicking, how often the modal is shown. | Modal is triggered by mouse leaving the document body, modal link is clicked, modal backdrop is clicked to close modal, mouse leaves document body again to confirm the modal only displays once. | All tests completed and modal is performing as expected. | 
 Quiz Buttons | Test that all quiz buttons are functional, both before and after powerup usage. | Go through the quiz, selecting one button for each answer 10 times, using a powerup and repeating the previous test. Restart the quiz and carry out the same tests again.| All quiz buttons maintained functionality both before and after powerup usage and after restarting the quiz.|
