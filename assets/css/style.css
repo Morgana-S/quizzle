@@ -184,20 +184,30 @@ dialog {
     top: 50%;
     z-index: 99;
     position: fixed;
+    text-align: center;
+    overflow: hidden;
 }
 
 dialog h2 {
     font-family: 'Boogaloo', sans-serif;
-    text-align: center;
 }
 
 dialog p {
     font-family: 'Gowun-Dodum', sans-serif;
-    text-align: center;
 }
 
 dialog::backdrop{
     background-color: #6256cab4;
+}
+
+dialog i {
+    color:#6256CA;
+    place-self: center;
+    font-size: 4rem;
+}
+
+dialog i:hover{
+    cursor: pointer;
 }
 
 /* Styling for the clickable powerup buttons */
