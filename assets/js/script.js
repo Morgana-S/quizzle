@@ -17,6 +17,8 @@ let randomQuestions = [];
 let randomNumbersArray = [];
 let currentQuestion;
 let timer;
+let feedbackButton;
+let quizTools;
 // Ensures the DOM content is loaded before using the random question order below
 addEventListener("DOMContentLoaded", function() {
     questionRandomizer();
@@ -132,7 +134,7 @@ function displayQuestions() {
  * Creates the elements for the quiz tools section, including the power-ups, restart button, and timer.
  */
 function displayQuizTools() {
-    let quizTools = document.getElementById('quiz-tools');
+    quizTools = document.getElementById('quiz-tools');
     // Creates the boxes for the power-ups
     for (let i = 0; i < 3; i++) {
         let createPowerUpButton = document.createElement('button');
