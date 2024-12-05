@@ -34,19 +34,8 @@ addEventListener("DOMContentLoaded", function() {
     usernameInput.addEventListener('input', function() {
         usernameValidation();
     })
-    startQuizButton.addEventListener('click', function() {
-        usernameValidation();
-    })
 });
 
-// Adds a modal when the user's mouse leaves the document 
-document.addEventListener("mouseleave", function() {
-    if (exitModalShown === 0) {
-        dialog.showModal();
-        exitModalShown++;
-    }
-    
-});
 
 // Allows the user to click anywhere outside of the modal box on the document to close it
 dialog.addEventListener('click', event => {
@@ -414,6 +403,20 @@ function createRestartButton(){
 }
 
 /**
+ * Creates a feedback button to show the modal at the end of the quiz.
+ */
+function createFeedbackButton(){
+    let createPowerUpButton = document.createElement('button');
+    createPowerUpButton.className = 'powerup-button';
+    createPowerUpButton.innerHTML =
+    `<i class="fa-solid fa-comment"></i><p class="powerup-label-quiz">Have feedback?</p>`
+    createPowerUpButton.setAttribute('onclick', 'dialog.showModal()');
+    createPowerUpButton.setAttribute('data-powerup', 'Have feedback?');
+    let restartSection = document.getElementById('restart-section');
+    restartSection.firstChild.appendChild(createPowerUpButton);
+}
+
+/**
  * Creates the results text box and displays the score
  */
 function showResults() {
@@ -421,6 +424,7 @@ function showResults() {
     createResultsSection();
     personalisedScoreMessage();
     createRestartButton();
+    createFeedbackButton();
 }
 
 /**
