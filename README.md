@@ -5,7 +5,15 @@ Quizzle is a simple quiz application which features interactivity through use of
 
 The deployed version of the site can be accessed on GitHub Pages [here.](https://morgana-s.github.io/quizzle/)
 
-## UX Design
+## UI/UX Design
+The wireframes for the website's design can be found [here.](/documentation/wireframes/quizzle-wireframes.pdf)
+
+The website's UI was designed to be rounded-off and 'bubbly' - this is to give the impression that it is friendly and entice users to take part. 
+
+The colour scheme of white and purple were used to provide a high-contrast, accessible scheme that makes the website easy to view. The vivid colour of the purple also indicates that the website doesn't take itself too seriously and is primarily for entertainment.
+
+The wireframes originally indicate that green was to be used as an accent colour - this was changed to yellow later in the project to avoid ambiguity in terms of answer selection (green is often used to indicate "correctness" as a colour - having quiz buttons that were green when hovered might be confusing to users.)
+
 The design of the website was created so that users:
 - Could understand the layout of the quiz instantly, with consistent design between each question.
 - Could navigate the site in a way that was consistent across all pages.
