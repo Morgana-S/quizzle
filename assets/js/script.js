@@ -19,6 +19,11 @@ let currentQuestion;
 let timer;
 let feedbackButton;
 let quizTools;
+let timerSpan;
+let timerElement;
+let removeOrderArray;
+let hiddenBoxes;
+let quizTextBox;
 // Ensures the DOM content is loaded before using the random question order below
 addEventListener("DOMContentLoaded", function() {
     questionRandomizer();
@@ -155,12 +160,11 @@ function displayQuizTools() {
     powerUpButton[2].setAttribute('onclick', 'restartQuiz();');
     powerUpButton[2].setAttribute('data-powerup', 'Restart Quiz');
     // Creates the box for the timer
-    let createTimer = document.createElement('div');
-    createTimer.className = 'timer';
-    createTimer.innerHTML = 
+    createDiv.className = 'timer';
+    createDiv.innerHTML = 
     `<span class='timer-span'>${secondsLeft}</span>
     <span class='timer-span'>seconds</span>`;
-    quizTools.firstChild.appendChild(createTimer);
+    quizTools.firstChild.appendChild(createDiv);
 }
 
 /**
@@ -202,7 +206,7 @@ function restartQuiz() {
  */
 function startTimer() {
     // Displays black text when the timer is above 10 seconds, red text if the timer is below 6 seconds
-    let timerSpan = document.getElementsByClassName('timer-span');
+    timerSpan = document.getElementsByClassName('timer-span');
     timer = setInterval(function() {
         secondsLeft--;
         updateTimeLeft();
@@ -228,7 +232,7 @@ function startTimer() {
  * Updates the amount of time left in the timer
  */
 function updateTimeLeft() {
-    let timerElement = document.getElementsByClassName('timer');
+    timerElement = document.getElementsByClassName('timer');
     timerElement[0].innerHTML = 
     `<span class='timer-span'>${secondsLeft}</span>
     <span class='timer-span'>seconds</span>`;
@@ -255,7 +259,7 @@ function freezeTimer(powerUpButton) {
 function removeTwoAnswers(powerUpButton) {
     powerUpButton.remove();
     // Creates an order to attempt to remove the wrong answers in - this ensures randomness when removing answers (not the same answers removed each time)
-    let removeOrderArray = [];
+    removeOrderArray = [];
     while (removeOrderArray.length < 4) {
         let randomNumber = (Math.floor(Math.random() * 4));
         if (!removeOrderArray.includes(randomNumber)) {
@@ -281,7 +285,7 @@ function removeTwoAnswers(powerUpButton) {
  * Brings back the removed answer boxes for when the 50/50 powerup is used
  */
 function showAllAnswers() {
-    let hiddenBoxes = document.getElementsByClassName('hidden-answer');
+    hiddenBoxes = document.getElementsByClassName('hidden-answer');
     while (removedAnswers > 0) {
         hiddenBoxes[0].setAttribute('onclick', 'checkAnswer(this);showNextQuestion()');
         hiddenBoxes[0].classList.remove('hidden-answer');
@@ -322,7 +326,7 @@ function showNextQuestion() {
  */
 function updateQuestion() {
     currentQuestion = randomQuestions[currentQuestionNumber];
-    let quizTextBox = document.getElementsByClassName('text-container');
+    quizTextBox = document.getElementsByClassName('text-container');
     quizTextBox[1].innerHTML = 
     `<p class= "question-number">Question ${displayQuestionNumber} of 10</p>
     <p class="article-content">${currentQuestion.text}</p>`;
