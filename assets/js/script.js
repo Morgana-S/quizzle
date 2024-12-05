@@ -8,7 +8,6 @@ const powerUpButton = document.getElementsByClassName('powerup-button');
 const dialog = document.querySelector('dialog');
 const createDiv = document.createElement('div');
 const closeButton = document.getElementById('close-feedback');
-let exitModalShown = 0;
 let currentQuestionNumber = 0;
 let displayQuestionNumber = 1;
 let score = 0;
