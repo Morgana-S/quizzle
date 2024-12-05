@@ -70,11 +70,10 @@ The design of the website was created so that users:
 ![Restart Quiz Function](/documentation/feature-images/restart-quiz.gif)
 - The user is able to restart the quiz using one of the buttons available. This can be done mid-quiz, or at the end of the quiz.
 - This allows the user to go back to the start if they need to reread the instructions, or to retry the quiz if they are not satisfied with their score, or would like to try different questions.
-### Custom Exit-Intent Modal
-![Exit Modal Functionality Showcase](/documentation/feature-images/exit-modal.gif)
-- When the user's mouse leaves the page, an exit-intent modal displays asking the user to provide feedback on the GitHub issues page.
-- The modal can be removed by clicking anywhere except the central text box where the modal displays. The user is given instructions on how to close the modal if they would like to.
-- To prevent user annoyance, the modal will only show once when attempting to leave the page.
+### Feedback Modal
+![Feedback Modal Functionality Showcase](/documentation/feature-images/exit-modal.gif)
+- When the user finished the quiz, they are prompted to provide feedback by a button. This button then displays a modal with information on where to provide feedback.
+- The modal can be removed by clicking anywhere except the central text box where the modal displays. They can also click the cross button contained within the modal. The user is given instructions on how to close the modal if they would like to.
 - The modal also warns the user that if they leave the page, their progress will not be saved on the quiz.
 - The link in the modal also opens in a new tab and is ARIA labelled to conform to accessibility standards and practices.
 ## Testing & Bugs
