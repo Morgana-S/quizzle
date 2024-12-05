@@ -73,9 +73,11 @@ function usernameValidation(nameString) {
     if (nameString.length < 2) {
         errorMessage.textContent = 'Name too short. Please create a name with 2 or more letters.';
         errorMessage.style.color = '#ff0000';
+        startQuizButton.removeAttribute('onclick');
     } else if (regex.test(nameString)){
         errorMessage.textContent = 'Name contains forbidden characters. Please use only uppercase or lowercase letters.';
         errorMessage.style.color = '#ff0000';
+        startQuizButton.removeAttribute('onclick')
     } else {
         errorMessage.textContent = 'Name is okay to use!';
         errorMessage.style.color = '#008000';
