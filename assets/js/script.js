@@ -12,6 +12,7 @@ let displayQuestionNumber = 1;
 let score = 0;
 let username;
 let secondsLeft = 10;
+let removedAnswers = 0;
 let randomQuestions = [];
 let randomNumbersArray = [];
 let currentQuestion;
@@ -247,8 +248,6 @@ function freezeTimer(powerUpButton) {
     stopTimer();
 }
 
-let removedAnswers = 0;
-
 /**
  * Removes two incorrect answers from the available options when 50/50 button is pressed
  */
@@ -410,7 +409,6 @@ function showResults() {
     personalisedScoreMessage();
     createRestartButton();
 }
-
 
 /**
  * Generates an array of random numbers to call as question indices
