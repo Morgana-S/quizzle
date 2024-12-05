@@ -6,6 +6,7 @@ const startButton = document.getElementById('start-quiz');
 const answerBox = document.getElementsByClassName('quiz-button');
 const powerUpButton = document.getElementsByClassName('powerup-button');
 const dialog = document.querySelector('dialog');
+const createDiv = document.createElement('div');
 let exitModalShown = 0;
 let currentQuestionNumber = 0;
 let displayQuestionNumber = 1;
@@ -24,11 +25,18 @@ let timerElement;
 let removeOrderArray;
 let hiddenBoxes;
 let quizTextBox;
-// Ensures the DOM content is loaded before using the random question order below
+
+/**
+ * Ensures the DOM content is loaded before using the random question order below and adding event listeners
+ */
 addEventListener("DOMContentLoaded", function() {
     questionRandomizer();
-    usernameInput.setAttribute('oninput', 'usernameValidation()');
-    startQuizButton.setAttribute('onclick', 'usernameValidation()');
+    usernameInput.addEventListener('input', function() {
+        usernameValidation();
+    })
+    startQuizButton.addEventListener('click', function() {
+        usernameValidation();
+    })
 });
 
 // Adds a modal when the user's mouse leaves the document 
