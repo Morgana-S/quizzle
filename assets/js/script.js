@@ -161,7 +161,6 @@ function displayQuizTools() {
     quizTools.firstChild.appendChild(createTimer);
 }
 
-
 /**
  * Begins the quiz by hiding the introduction and creating the necessary elements.
  */
@@ -315,8 +314,6 @@ function showNextQuestion() {
         showResults();
     }
 }
-
-
 
 /**
  * Changes the question displayed in the quiz
