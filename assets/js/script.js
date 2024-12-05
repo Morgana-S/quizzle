@@ -43,7 +43,9 @@ addEventListener("DOMContentLoaded", function() {
     })
 });
 
-// Allows the user to click anywhere outside of the modal box on the document to close it
+/**
+ * Allows the user to click anywhere outside of the modal box on the document to close it
+ */
 dialog.addEventListener('click', event => {
     const dialogDimensions = dialog.getBoundingClientRect();
     if (
@@ -183,6 +185,9 @@ function showQuiz() {
     startTimer();
 }
 
+/**
+ * Resets the quiz to an initial state
+ */
 function restartQuiz() {
     // Stops the timer
     stopTimer();
@@ -446,7 +451,9 @@ function questionRandomizer() {
     }
 }
 
-// List of Questions and Answerss
+/**
+ * List of questions and answers
+ */
 let questionsArray = [
     {
         text: 'What is the capital city of Argentina?',
