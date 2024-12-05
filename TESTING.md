@@ -5,6 +5,15 @@
 | --- | --- |---|
 |Browser - basic functionality | Website was opened with Microsoft Edge, Google Chrome, and Mozilla Firefox. Quiz functionality was tested using the functionality methods below. | Webpage loaded correctly on all tested browsers. Further information on individual tests carried out below in 'functionality' section.
 | Device - basic functionality | Website was opened using a desktop PC, Google Pixel 7 Mobile device, iPhone 14, and iPad. Quiz functionality was tested using the functionality methods below. | Webpage loaded correctly on all tested devices. Further information on individual tests carried out below in functionality section.
+
+#### Browser Tests
+##### Chrome
+![Chrome Browser Testing](/documentation/testing-images/chrome-testing.png)
+##### Microsoft Edge
+![Microsoft Edge Browser Testing](/documentation/testing-images/edge-testing.png)
+##### Firefox
+![Firefox Browser Testing](/documentation/testing-images/firefox-testing.png)
+
 ### Responsiveness
 | Test | Method | Results |
 | --- | --- | --- |
