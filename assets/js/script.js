@@ -7,6 +7,7 @@ const answerBox = document.getElementsByClassName('quiz-button');
 const powerUpButton = document.getElementsByClassName('powerup-button');
 const dialog = document.querySelector('dialog');
 const createDiv = document.createElement('div');
+const closeButton = document.getElementById('close-feedback');
 let exitModalShown = 0;
 let currentQuestionNumber = 0;
 let displayQuestionNumber = 1;
@@ -34,8 +35,13 @@ addEventListener("DOMContentLoaded", function() {
     usernameInput.addEventListener('input', function() {
         usernameValidation();
     })
+    startQuizButton.addEventListener('click', function(){
+        usernameValidation();
+    })
+    closeButton.addEventListener('click', function() {
+        dialog.close();
+    })
 });
-
 
 // Allows the user to click anywhere outside of the modal box on the document to close it
 dialog.addEventListener('click', event => {
